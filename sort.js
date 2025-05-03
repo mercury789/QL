@@ -49,6 +49,8 @@ async function processAllModes() {
       }
       console.log('Сортировка завершена.');
 
+      
+
       // Формируем содержимое файла
       const fileContent = `export const videos = {\n${Object.entries(videoCounts)
          .map(([key, value]) => `   ${key}: ${value}`)
