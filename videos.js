@@ -1,5 +1,5 @@
 export const videos = {
-   general: 36,
+   general: 35,
    absolute: 2,
    lose: 11,
    upgrade: 1,
