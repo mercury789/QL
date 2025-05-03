@@ -919,7 +919,7 @@ document.addEventListener('click', (event) => {
 
                            video('finance')
                         } else {
-                           video('recordWin') // oldWin
+                           video('general') // oldWin
 
                         }
 
@@ -960,11 +960,11 @@ document.addEventListener('click', (event) => {
                         if (loseClose <= checkDate.l) {
                            checkDate.l = loseClose
 
-                           // video('recordLose')
+                           // video('lose')
 
 
                         } else {
-                           // video('recordLose') // oldLose
+                           // video('lose') // oldLose
 
                         }
 
@@ -1026,7 +1026,7 @@ document.addEventListener('click', (event) => {
             //    video('finance')
 
             // } else {
-            //    video('recordLose') // oldLose
+            //    video('lose') // oldLose
 
             // }
 
@@ -1564,21 +1564,21 @@ document.addEventListener('click', (event) => {
 
                         if (checkDate.c < checkDate.o) {
                            if (!up) {
-                              video('comeback')
-                              log(`comeback: ${checkDate.c} < ${checkDate.o}`);
+                              video('general')
+                              log(`general: ${checkDate.c} < ${checkDate.o}`);
                            }
                         } else {
                            if (procent > checkDate.h) {
                               checkDate.h = procent
 
                               if (!up) {
-                                 video('recordWin')
-                                 log(`recordWin: ${procent} > ${checkDate.h}`);
+                                 video('general')
+                                 log(`general: ${procent} > ${checkDate.h}`);
                               }
                            } else {
                               if (!up) {
-                                 video('recordWin') // oldWin
-                                 log(`win: ${procent} > ${checkDate.c}`);
+                                 video('general') // oldWin
+                                 log(`general: ${procent} > ${checkDate.c}`);
                               }
                            }
                         }
@@ -1587,7 +1587,7 @@ document.addEventListener('click', (event) => {
                      } else {
 
                         if (!up) {
-                           // video('recordLose') // oldLose
+                           // video('lose') // oldLose
                            log(`lose: ${procent} < ${checkDate.c}`);
                         }
 
@@ -1610,8 +1610,8 @@ document.addEventListener('click', (event) => {
                      if (procent > checkDate.c) {
 
                         if (!up) {
-                           video('recordWin') // oldWin
-                           log(`win: ${procent} > ${checkDate.l}`);
+                           video('general') // oldWin
+                           log(`general: ${procent} > ${checkDate.l}`);
                         }
 
                      } else {
@@ -1620,12 +1620,12 @@ document.addEventListener('click', (event) => {
                            checkDate.l = procent
 
                            if (!up) {
-                              video('recordLose')
-                              log(`recordLose: ${procent} < ${checkDate.l}`);
+                              video('lose')
+                              log(`lose: ${procent} < ${checkDate.l}`);
                            }
                         } else {
                            if (!up) {
-                              // video('recordLose') // oldLose
+                              // video('lose') // oldLose
                               log(`lose: ${procent} < ${checkDate.c}`);
                            }
                         }
@@ -1847,21 +1847,21 @@ document.addEventListener('click', (event) => {
 
                         if (checkDate.c < checkDate.o) {
                            if (!up) {
-                              video('comeback')
-                              log(`comeback: ${checkDate.c} < ${checkDate.o}`);
+                              video('general')
+                              log(`general: ${checkDate.c} < ${checkDate.o}`);
                            }
                         } else {
                            if (procent > checkDate.h) {
                               checkDate.h = procent
 
                               if (!up) {
-                                 video('recordWin')
-                                 log(`recordWin: ${procent} > ${checkDate.h}`);
+                                 video('general')
+                                 log(`general: ${procent} > ${checkDate.h}`);
                               }
                            } else {
                               if (!up) {
-                                 video('recordWin') // oldWin
-                                 log(`win: ${procent} > ${checkDate.c}`);
+                                 video('general') // oldWin
+                                 log(`general: ${procent} > ${checkDate.c}`);
                               }
                            }
                         }
@@ -1870,7 +1870,7 @@ document.addEventListener('click', (event) => {
                      } else {
 
                         if (!up) {
-                           // video('recordLose') // oldLose
+                           // video('lose') // oldLose
                            log(`lose: ${procent} < ${checkDate.c}`);
                         }
 
@@ -1893,8 +1893,8 @@ document.addEventListener('click', (event) => {
                      if (procent > checkDate.c) {
 
                         if (!up) {
-                           video('recordWin') // oldWin
-                           log(`win: ${procent} > ${checkDate.l}`);
+                           video('general') // oldWin
+                           log(`general: ${procent} > ${checkDate.l}`);
                         }
 
                      } else {
@@ -1903,12 +1903,12 @@ document.addEventListener('click', (event) => {
                            checkDate.l = procent
 
                            if (!up) {
-                              video('recordLose')
-                              log(`recordLose: ${procent} < ${checkDate.l}`);
+                              video('lose')
+                              log(`lose: ${procent} < ${checkDate.l}`);
                            }
                         } else {
                            if (!up) {
-                              // video('recordLose') // oldLose
+                              // video('lose') // oldLose
                               log(`lose: ${procent} < ${checkDate.c}`);
                            }
                         }
@@ -2317,8 +2317,8 @@ document.addEventListener('click', (event) => {
 
                         if (checkDate.c < checkDate.o) {
                            if (!up) {
-                              video('comeback')
-                              log(`comeback: ${checkDate.c} < ${checkDate.o}`);
+                              video('general')
+                              log(`general: ${checkDate.c} < ${checkDate.o}`);
                            }
                         }
 
@@ -2326,13 +2326,13 @@ document.addEventListener('click', (event) => {
                            checkDate.h = procent
 
                            if (!up) {
-                              video('recordWin')
-                              log(`recordWin: ${procent} > ${checkDate.h}`);
+                              video('general')
+                              log(`general: ${procent} > ${checkDate.h}`);
                            }
                         } else {
                            if (!up) {
-                              video('recordWin') // oldWin
-                              log(`win: ${procent} > ${checkDate.c}`);
+                              video('general') // oldWin
+                              log(`general: ${procent} > ${checkDate.c}`);
                            }
                         }
 
@@ -2340,7 +2340,7 @@ document.addEventListener('click', (event) => {
                      } else {
 
                         if (!up) {
-                           // video('recordLose') // oldLose
+                           // video('lose') // oldLose
                            log(`lose: ${procent} < ${checkDate.c}`);
                         }
 
@@ -2366,8 +2366,8 @@ document.addEventListener('click', (event) => {
                      if (procent > checkDate.c) {
 
                         if (!up) {
-                           video('recordWin') // oldWin
-                           log(`win: ${procent} > ${checkDate.l}`);
+                           video('general') // oldWin
+                           log(`general: ${procent} > ${checkDate.l}`);
                         }
 
                      } else {
@@ -2376,12 +2376,12 @@ document.addEventListener('click', (event) => {
                            checkDate.l = procent
 
                            if (!up) {
-                              video('recordLose')
-                              log(`recordLose: ${procent} < ${checkDate.l}`);
+                              video('lose')
+                              log(`lose: ${procent} < ${checkDate.l}`);
                            }
                         } else {
                            if (!up) {
-                              video('recordLose') // oldLose
+                              video('lose') // oldLose
                               log(`lose: ${procent} < ${checkDate.c}`);
                            }
                         }
@@ -2732,8 +2732,8 @@ document.addEventListener('click', (event) => {
 
          }
 
-         video('task')
-         log('task');
+         video('general')
+         log('general');
 
          const pad = (n) => String(n).padStart(2, '0');
          const today = new Date();
@@ -3086,7 +3086,7 @@ document.addEventListener('click', (event) => {
          video('absolute')
 
       } else {
-         video('recordLose') // oldLose
+         video('lose') // oldLose
 
       }
 
@@ -3252,7 +3252,7 @@ document.addEventListener('click', (event) => {
 
       document.querySelector('[data-burger-2]').classList.remove('_active')
 
-      video('recordLose')
+      video('lose')
 
       set('burger2', document.querySelector('[data-burger-2]').innerHTML)
 
@@ -4555,8 +4555,8 @@ document.addEventListener('click', (event) => {
 
       lobbyPoint.classList.add('_complete')
 
-      video('task')
-      log('task');
+      video('general')
+      log('general');
 
 
       const pad = (n) => String(n).padStart(2, '0');
@@ -4619,8 +4619,8 @@ document.addEventListener('click', (event) => {
 
       lobbyPoint.classList.add('_lose')
 
-      video('recordLose') // oldLose
-      log('task');
+      video('lose') // oldLose
+      log('lose');
 
       const pad = (n) => String(n).padStart(2, '0');
       const today = new Date();
