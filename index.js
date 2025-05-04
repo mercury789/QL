@@ -1427,7 +1427,7 @@ document.addEventListener('click', (event) => {
 
       input.type = 'number'
       input.style = 'position: fixed; bottom: 60px; left: 10px; width: 40px; color: rgb(255, 230, 2);'
-      input.setAttribute('placeholder', '0')
+      input.setAttribute('placeholder', '20')
       input.setAttribute('tabindex', '-1')
       input.setAttribute('data-temp-input', 'pos')
 
@@ -1445,7 +1445,7 @@ document.addEventListener('click', (event) => {
 
       input.type = 'number'
       input.style = 'position: fixed; bottom: 60px; left: 10px; width: 40px; color: rgb(255, 99, 132);'
-      input.setAttribute('placeholder', '0')
+      input.setAttribute('placeholder', '20')
       input.setAttribute('tabindex', '-1')
       input.setAttribute('data-temp-input', 'neg')
 
