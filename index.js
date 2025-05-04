@@ -31,6 +31,7 @@ function log(info) {
 
 
 
+
 function waterTimer() {
 
    const end = get('waterEnd')
@@ -1035,16 +1036,15 @@ document.addEventListener('click', (event) => {
 
 
       } else {
-         document.querySelector('[data-money-pos-add]').style.display = 'none'
-         document.querySelector('[data-money-neg-add]').style.display = 'none'
          const oldAsset = targ.closest('[data-asset]')
          const oldAssetNum = oldAsset.querySelector('[data-asset-num]')
+         const oldUsdt = oldAsset.querySelector('[data-asset-usdt]')
          document.querySelector('[data-dropdown]').remove()
 
          input = document.createElement('input')
 
          input.type = 'number'
-         input.style = 'position: fixed; bottom: 60px; left: 10px; width: 100px; color: #FCFCFC;'
+         input.style = 'position: fixed; bottom: 60px; left: 10px; width: 40px; color: #FCFCFC;'
          input.setAttribute('tabindex', '-1')
 
          document.body.appendChild(input)
@@ -1062,6 +1062,9 @@ document.addEventListener('click', (event) => {
 
                   const oldNewNum = Number(oldAssetNum.innerText) - inputValue
                   oldAssetNum.innerText = oldNewNum.toFixed(2)
+
+                  const oldNewUsdt = oldNewNum * 0.024
+                  oldUsdt.innerText = oldNewUsdt.toFixed(2)
 
                   const assetTextAll = document.querySelectorAll('[data-asset-text]')
                   assetTextAll.forEach((assetText) => {
@@ -3448,7 +3451,7 @@ document.addEventListener('click', (event) => {
          <div data-dropdown>
             <button data-dinam-lose>провалить</button>
             <button data-dinam-create>создать</button>
-            <button data-dinam-rename>переименовать</button>
+            <button data-dinam-rename>изменить</button>
             <button data-dinam-up>выше</button>
             <button data-dinam-down>ниже</button>
             <button data-dinam-delete>удалить</button>
@@ -3509,7 +3512,7 @@ document.addEventListener('click', (event) => {
          asset.insertAdjacentHTML('beforeend', `
          <div data-dropdown>
             <button data-asset-create>создать</button>
-            <button data-asset-rename>переименовать</button>
+            <button data-asset-rename>изменить</button>
             <button data-asset-convert>конвертировать</button>
             <button data-asset-move-up>выше</button>
             <button data-asset-move-down>ниже</button>
@@ -4263,12 +4266,14 @@ document.addEventListener('click', (event) => {
 
    if (targ.closest('[data-politic-up]')) {
       const point = targ.closest('[data-politic-point]')
+      const burger2Shadow =  targ.closest('[data-politic]').querySelector('[data-burger2-shadow]')
+
       document.querySelector('[data-dropdown]').remove()
       if (point.previousElementSibling) {
          point.previousElementSibling.insertAdjacentHTML('beforebegin', point.outerHTML)
          point.remove()
       }
-      targ.closest('[data-politic]').querySelector('[data-burger2-shadow]').classList.remove('_active')
+      burger2Shadow.classList.remove('_active')
       document.querySelector('[data-politic-point]._active').classList.remove('_active')
 
       set('burger2', document.querySelector('[data-burger-2]').innerHTML)
@@ -4277,12 +4282,14 @@ document.addEventListener('click', (event) => {
 
    if (targ.closest('[data-politic-down]')) {
       const point = targ.closest('[data-politic-point]')
+      const burger2Shadow =  targ.closest('[data-politic]').querySelector('[data-burger2-shadow]')
+
       document.querySelector('[data-dropdown]').remove()
       if (point.nextElementSibling) {
          point.nextElementSibling.insertAdjacentHTML('afterend', point.outerHTML)
          point.remove()
       }
-      targ.closest('[data-politic]').querySelector('[data-burger2-shadow]').classList.remove('_active')
+      burger2Shadow.classList.remove('_active')
       document.querySelector('[data-politic-point]._active').classList.remove('_active')
 
       set('burger2', document.querySelector('[data-burger-2]').innerHTML)
@@ -4323,9 +4330,11 @@ document.addEventListener('click', (event) => {
 
 
    if (targ.closest('[data-politic-delete]')) {
-      targ.closest('[data-politic-point]').remove()
 
-      targ.closest('[data-politic]').querySelector('[data-burger2-shadow]').classList.remove('_active')
+      const burger2Shadow =  targ.closest('[data-politic]').querySelector('[data-burger2-shadow]')
+      burger2Shadow.classList.remove('_active')
+
+      targ.closest('[data-politic-point]').remove()
 
       set('burger2', document.querySelector('[data-burger-2]').innerHTML)
 
@@ -4336,12 +4345,15 @@ document.addEventListener('click', (event) => {
 
       const targElem = targ.closest('[data-politic-point]')
 
+      const burger2Shadow =  targ.closest('[data-politic]').querySelector('[data-burger2-shadow]')
+
+      burger2Shadow.classList.add('_active')
       document.querySelector('[data-dropdown]').remove()
-      targ.closest('[data-politic]').querySelector('[data-burger2-shadow]').classList.add('_active')
+
 
       let input = document.createElement('textarea')
 
-      input.style = 'position: fixed; bottom: 60px; left: 10px; width: 200px; font-size: 14px; height: 100px; color: #FCFCFC; border: none; border-radius: 5px; padding: 10px; background: rgba(29, 28, 34, 1); z-index: 2000;'
+      input.style = 'position: fixed; bottom: 60px; left: 10px; width: 200px; font-size: 14px; height: 100px; color: #FCFCFC; border: none; border-radius: 5px; padding: 10px; background: rgba(29, 28, 34, 1); z-index: 5000;'
       // input.setAttribute('rows', '10')
       // input.setAttribute('cols', '100')
       input.setAttribute('placeholder', 'название')
@@ -4366,7 +4378,7 @@ document.addEventListener('click', (event) => {
             mainText()
             input.remove()
 
-            targ.closest('[data-politic]').querySelector('[data-burger2-shadow]').classList.remove('_active')
+            burger2Shadow.classList.remove('_active')
             document.querySelector('[data-dropdown]') && document.querySelector('[data-dropdown]').remove()
             document.querySelector('[data-politic-point]._active').classList.remove('_active')
 
@@ -4381,9 +4393,10 @@ document.addEventListener('click', (event) => {
    if (targ.closest('[data-politic-create]')) {
 
       const targElem = targ.closest('[data-politic-point]')
+      const burger2Shadow =  targ.closest('[data-politic]').querySelector('[data-burger2-shadow]')
 
       document.querySelector('[data-dropdown]').remove()
-      targ.closest('[data-politic]').querySelector('[data-burger2-shadow]').classList.add('_active')
+      burger2Shadow.classList.add('_active')
 
       let input = document.createElement('textarea')
 
@@ -4414,7 +4427,7 @@ document.addEventListener('click', (event) => {
             mainText()
             input.remove()
 
-            targ.closest('[data-politic]').querySelector('[data-burger2-shadow]').classList.remove('_active')
+            burger2Shadow.classList.remove('_active')
             document.querySelector('[data-dropdown]') && document.querySelector('[data-dropdown]').remove()
             document.querySelector('[data-politic-point]._active').classList.remove('_active')
 
@@ -4484,7 +4497,7 @@ document.addEventListener('click', (event) => {
 
    if (targ.closest('[data-lobby-edit]')) {
       document.querySelector('[data-task-shadow]').classList.add('_active')
-      document.querySelector('[data-lobby-point]').classList.add('_temp')
+      targ.closest('[data-lobby-point]').classList.add('_temp')
 
       const input = document.createElement('input')
 
@@ -4495,7 +4508,7 @@ document.addEventListener('click', (event) => {
       const inputSecond = document.createElement('input')
 
       inputSecond.type = 'number'
-      inputSecond.style = 'position: fixed; bottom: 60px; left: 135px; width: 40px; color: #FCFCFC;'
+      inputSecond.style = 'position: fixed; bottom: 60px; left: 135px; width: 40px; color: rgb(100, 75, 192);'
       inputSecond.setAttribute('tabindex', '-1')
       inputSecond.setAttribute('data-input-second', '')
 
@@ -5069,7 +5082,7 @@ document.addEventListener('click', (event) => {
             div.innerHTML = `
                <button data-task-time>время</button>
                <button data-task-create>создать</button>
-               <button data-task-rename>переименовать</button>
+               <button data-task-rename>изменить</button>
                <button data-task-delete>удалить</button>
             `
 
@@ -5455,7 +5468,7 @@ polRewardRang()
 //          tab.insertAdjacentHTML('afterbegin', `
 //             <div data-dropdown>
 //                <button data-task-create>создать</button>
-//                <button data-task-rename>переименовать</button>
+//                <button data-task-rename>изменить</button>
 //                <button data-task-delete>удалить</button>
 //             </div>
 //          `);
@@ -5532,7 +5545,7 @@ polRewardRang()
 //             <div data-dropdown>
 //                <button data-task-time>время</button>
 //                <button data-task-create>создать</button>
-//                <button data-task-rename>переименовать</button>
+//                <button data-task-rename>изменить</button>
 //                <button data-task-delete>удалить</button>
 //             </div>
 //          `);
@@ -5561,3 +5574,4 @@ polRewardRang()
 
 
 
+document.querySelector('[data-politic]').classList.remove('_active')
