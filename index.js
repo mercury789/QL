@@ -814,6 +814,43 @@ document.addEventListener('click', (event) => {
       document.querySelector('[data-burger-2]').classList.remove('_active')
       document.querySelector('[data-task-shadow]').classList.remove('_active')
 
+
+
+
+
+      const dropDown = document.querySelector('[data-dropdown]')
+      const text = document.querySelector('[data-text]._active')
+      const input = document.querySelector("input[tabindex='-1']")
+      const assetTextActive = document.querySelector('[data-asset-text]._active')
+      const inputSecond = document.querySelector('[data-input-second]')
+      const inputThird = document.querySelector('[data-input-third]')
+      document.querySelector('[data-politic]')?.classList.remove('_active')
+      document.querySelector('[data-polreward]')?.classList.remove('_active')
+
+      // document.querySelector('[data-money-pos-add]').style.display = 'flex'
+      // if (!document.querySelector('[data-money-start]')) document.querySelector('[data-money-neg-add]').style.display = 'flex'
+      // document.querySelector('[data-pos-add]').style.display = 'flex'
+      // document.querySelector('[data-neg-add]').style.display = 'flex'
+      document.querySelector('[data-money-categories]').style.display = 'none'
+
+      shadow.classList.remove('_active')
+      dropDown && dropDown.remove()
+
+      text && text.classList.remove('_active')
+      assetTextActive && assetTextActive.classList.remove('_active')
+      input && input.remove('_active')
+      inputSecond && inputSecond.remove('_active')
+      inputThird && inputThird.remove('_active')
+
+      const tempPoint = document.querySelector('[data-lobby-point]._temp')
+      tempPoint && tempPoint.classList.remove('_temp')
+
+      document.querySelector('[data-burger-2]').classList.remove('_active')
+
+
+
+
+
    }
 
    if (targ.closest('[data-stat]') || targ.closest('[data-money-stat]') || targ.closest('[data-note-stat]')) {
@@ -865,8 +902,8 @@ document.addEventListener('click', (event) => {
                `)
             }
 
-          
-       
+
+
 
             document.querySelector('[data-statmoney-num]').innerText = Number(inputValue).toFixed(2)
 
@@ -996,6 +1033,7 @@ document.addEventListener('click', (event) => {
 
                      document.querySelector('[data-money-neg-add]').classList.remove('_block')
                      document.querySelector('[data-money-pos-add]').style = 'bottom: 105px; right: 10px;'
+                     document.querySelector('[data-money-neg-add]').style = 'bottom: 60px; right: 10px;'
 
                      const asset = document.querySelectorAll('[data-asset]')
                      asset.forEach((asset) => {
@@ -4266,7 +4304,7 @@ document.addEventListener('click', (event) => {
 
    if (targ.closest('[data-politic-up]')) {
       const point = targ.closest('[data-politic-point]')
-      const burger2Shadow =  targ.closest('[data-politic]').querySelector('[data-burger2-shadow]')
+      const burger2Shadow = targ.closest('[data-politic]').querySelector('[data-burger2-shadow]')
 
       document.querySelector('[data-dropdown]').remove()
       if (point.previousElementSibling) {
@@ -4282,7 +4320,7 @@ document.addEventListener('click', (event) => {
 
    if (targ.closest('[data-politic-down]')) {
       const point = targ.closest('[data-politic-point]')
-      const burger2Shadow =  targ.closest('[data-politic]').querySelector('[data-burger2-shadow]')
+      const burger2Shadow = targ.closest('[data-politic]').querySelector('[data-burger2-shadow]')
 
       document.querySelector('[data-dropdown]').remove()
       if (point.nextElementSibling) {
@@ -4331,7 +4369,7 @@ document.addEventListener('click', (event) => {
 
    if (targ.closest('[data-politic-delete]')) {
 
-      const burger2Shadow =  targ.closest('[data-politic]').querySelector('[data-burger2-shadow]')
+      const burger2Shadow = targ.closest('[data-politic]').querySelector('[data-burger2-shadow]')
       burger2Shadow.classList.remove('_active')
 
       targ.closest('[data-politic-point]').remove()
@@ -4345,7 +4383,7 @@ document.addEventListener('click', (event) => {
 
       const targElem = targ.closest('[data-politic-point]')
 
-      const burger2Shadow =  targ.closest('[data-politic]').querySelector('[data-burger2-shadow]')
+      const burger2Shadow = targ.closest('[data-politic]').querySelector('[data-burger2-shadow]')
 
       burger2Shadow.classList.add('_active')
       document.querySelector('[data-dropdown]').remove()
@@ -4393,7 +4431,7 @@ document.addEventListener('click', (event) => {
    if (targ.closest('[data-politic-create]')) {
 
       const targElem = targ.closest('[data-politic-point]')
-      const burger2Shadow =  targ.closest('[data-politic]').querySelector('[data-burger2-shadow]')
+      const burger2Shadow = targ.closest('[data-politic]').querySelector('[data-burger2-shadow]')
 
       document.querySelector('[data-dropdown]').remove()
       burger2Shadow.classList.add('_active')
