@@ -604,6 +604,8 @@ video {
     z-index: 50;
     top: 10px;
     right: 10px;
+    background-color: transparent;
+
 }
 [data-log-cross] {
    width: 30px;
@@ -617,6 +619,8 @@ video {
     z-index: 50;
     top: 10px;
     right: 10px;
+    background-color: transparent;
+
 }
 
 [data-politic-cross] {
@@ -631,6 +635,7 @@ video {
     z-index: 50;
     top: 10px;
     right: 10px;
+    background-color: transparent;
 }
 [data-polreward-cross] {
    width: 30px;
@@ -644,6 +649,8 @@ video {
     z-index: 50;
     top: 10px;
     right: 10px;
+    background-color: transparent;
+
 }
 
 [data-burger-2]._active {
