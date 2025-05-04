@@ -755,12 +755,16 @@ document.addEventListener('click', (event) => {
       dropdown && dropdown.remove('_active')
       const politic = document.querySelector('[data-politic]')
       politic && politic.classList.remove('_active')
+      const collection = document.querySelector('[data-collection]')
+      collection && collection.classList.remove('_active')
       const burger2ShadowAll = document.querySelectorAll('[data-burger2-shadow]')
       burger2ShadowAll.forEach((burger2Shadow) => {
          burger2Shadow.classList.remove('_active')
       })
       const politicPoint = document.querySelector('[data-politic-point]')
       politicPoint && politicPoint.classList.remove('_active')
+      const collectionPoint = document.querySelector('[data-collection-point]')
+      collectionPoint && politicPoint.classList.remove('_active')
 
       const mn = document.querySelector('[data-mn]')
       const ql = document.querySelector('[data-ql]')
@@ -824,6 +828,7 @@ document.addEventListener('click', (event) => {
       const assetTextActive = document.querySelector('[data-asset-text]._active')
       const inputSecond = document.querySelector('[data-input-second]')
       const inputThird = document.querySelector('[data-input-third]')
+      document.querySelector('[data-collection]')?.classList.remove('_active')
       document.querySelector('[data-politic]')?.classList.remove('_active')
       document.querySelector('[data-polreward]')?.classList.remove('_active')
 
@@ -4255,6 +4260,10 @@ document.addEventListener('click', (event) => {
       document.querySelector('[data-log]').classList.remove('_active')
 
    }
+   if (targ.closest('[data-collection-cross]')) {
+      document.querySelector('[data-collection]').classList.remove('_active')
+
+   }
    if (targ.closest('[data-politic-cross]')) {
       document.querySelector('[data-politic]').classList.remove('_active')
 
@@ -4276,6 +4285,12 @@ document.addEventListener('click', (event) => {
 
    }
 
+   if (targ.closest('[data-collection-button]')) {
+
+      document.querySelector('[data-collection]').classList.add('_active')
+
+   }
+
    if (targ.closest('[data-politic-button]')) {
 
       document.querySelector('[data-politic]').classList.add('_active')
@@ -4293,10 +4308,13 @@ document.addEventListener('click', (event) => {
    if (targ.closest('[data-burger2-shadow]')) {
       const dropdown = document.querySelector('[data-dropdown]')
       dropdown && dropdown.remove()
-      document.querySelector('[data-politic-point]._active').classList.remove('_active')
+      document.querySelector('[data-politic-point]._active')?.classList.remove('_active')
+      document.querySelector('[data-collection-point]._active')?.classList.remove('_active')
 
       const textArea = document.querySelector('textarea')
       textArea && textArea.remove('_active')
+      const input = document.querySelector('input[tabindex="-1"]')
+      input && input.remove('_active')
       targ.closest('[data-burger2-shadow]').classList.remove('_active')
 
    }
@@ -4329,6 +4347,37 @@ document.addEventListener('click', (event) => {
       }
       burger2Shadow.classList.remove('_active')
       document.querySelector('[data-politic-point]._active').classList.remove('_active')
+
+      set('burger2', document.querySelector('[data-burger-2]').innerHTML)
+
+   }
+   if (targ.closest('[data-collection-up]')) {
+      const point = targ.closest('[data-collection-point]')
+      const burger2Shadow = targ.closest('[data-collection]').querySelector('[data-burger2-shadow]')
+
+      document.querySelector('[data-dropdown]').remove()
+      if (point.previousElementSibling) {
+         point.previousElementSibling.insertAdjacentHTML('beforebegin', point.outerHTML)
+         point.remove()
+      }
+      burger2Shadow.classList.remove('_active')
+      document.querySelector('[data-collection-point]._active').classList.remove('_active')
+
+      set('burger2', document.querySelector('[data-burger-2]').innerHTML)
+
+   }
+
+   if (targ.closest('[data-collection-down]')) {
+      const point = targ.closest('[data-collection-point]')
+      const burger2Shadow = targ.closest('[data-collection]').querySelector('[data-burger2-shadow]')
+
+      document.querySelector('[data-dropdown]').remove()
+      if (point.nextElementSibling) {
+         point.nextElementSibling.insertAdjacentHTML('afterend', point.outerHTML)
+         point.remove()
+      }
+      burger2Shadow.classList.remove('_active')
+      document.querySelector('[data-collection-point]._active').classList.remove('_active')
 
       set('burger2', document.querySelector('[data-burger-2]').innerHTML)
 
@@ -4366,6 +4415,37 @@ document.addEventListener('click', (event) => {
 
    }
 
+   if (targ.closest('[data-collection-point]') && !targ.closest('[data-dropdown]')) {
+
+      targ.closest('[data-collection-point]').insertAdjacentHTML('beforeend', `
+         <div data-dropdown>
+            <button data-collection-create>создать</button>
+            <button data-collection-edit>изменить</button>
+            <button data-collection-up>выше</button>
+            <button data-collection-down>ниже</button>
+            <button data-collection-delete>удалить</button>
+         </div>
+            `)
+
+      const dropdown = document.querySelector('[data-dropdown]')
+      const { bottom, left } = isDropdownOutOfView(dropdown)
+
+      dropdown.style.width = '100px';
+
+      if (bottom) {
+         dropdown.style.top = 'auto';
+         dropdown.style.bottom = '100%';
+      }
+      // if (left) {
+      //    dropdown.style.roght = 'auto';
+      //    dropdown.style.left = '0px';
+      // }
+
+      targ.closest('[data-collection-point]').classList.add('_active')
+      targ.closest('[data-collection]').querySelector('[data-burger2-shadow]').classList.add('_active')
+
+   }
+
 
    if (targ.closest('[data-politic-delete]')) {
 
@@ -4373,6 +4453,17 @@ document.addEventListener('click', (event) => {
       burger2Shadow.classList.remove('_active')
 
       targ.closest('[data-politic-point]').remove()
+
+      set('burger2', document.querySelector('[data-burger-2]').innerHTML)
+
+
+   }
+   if (targ.closest('[data-collection-delete]')) {
+
+      const burger2Shadow = targ.closest('[data-collection]').querySelector('[data-burger2-shadow]')
+      burger2Shadow.classList.remove('_active')
+
+      targ.closest('[data-collection-point]').remove()
 
       set('burger2', document.querySelector('[data-burger-2]').innerHTML)
 
@@ -4427,6 +4518,54 @@ document.addEventListener('click', (event) => {
       })
 
    }
+   if (targ.closest('[data-collection-edit]')) {
+
+      const targElem = targ.closest('[data-collection-point]')
+
+      const burger2Shadow = targ.closest('[data-collection]').querySelector('[data-burger2-shadow]')
+
+      burger2Shadow.classList.add('_active')
+      document.querySelector('[data-dropdown]').remove()
+
+
+      let input = document.createElement('textarea')
+
+      input.style = 'position: fixed; bottom: 60px; left: 10px; width: 200px; font-size: 14px; height: 100px; color: #FCFCFC; border: none; border-radius: 5px; padding: 10px; background: rgba(29, 28, 34, 1); z-index: 5000;'
+      // input.setAttribute('rows', '10')
+      // input.setAttribute('cols', '100')
+      input.setAttribute('placeholder', 'название')
+
+      document.body.appendChild(input)
+
+      input.value = targElem.innerText
+
+      input.focus()
+
+      function mainText() {
+
+         targElem.innerText = input.value
+
+      }
+
+      input.addEventListener('keydown', (event) => {
+
+         if (event.key === 'Enter') {
+            event.preventDefault()
+
+            mainText()
+            input.remove()
+
+            burger2Shadow.classList.remove('_active')
+            document.querySelector('[data-dropdown]') && document.querySelector('[data-dropdown]').remove()
+            document.querySelector('[data-collection-point]._active').classList.remove('_active')
+
+            set('burger2', document.querySelector('[data-burger-2]').innerHTML)
+
+         }
+
+      })
+
+   }
 
    if (targ.closest('[data-politic-create]')) {
 
@@ -4468,6 +4607,54 @@ document.addEventListener('click', (event) => {
             burger2Shadow.classList.remove('_active')
             document.querySelector('[data-dropdown]') && document.querySelector('[data-dropdown]').remove()
             document.querySelector('[data-politic-point]._active').classList.remove('_active')
+
+            set('burger2', document.querySelector('[data-burger-2]').innerHTML)
+
+         }
+
+      })
+
+   }
+   if (targ.closest('[data-collection-create]')) {
+
+      const targElem = targ.closest('[data-collection-point]')
+      const burger2Shadow = targ.closest('[data-collection]').querySelector('[data-burger2-shadow]')
+
+      document.querySelector('[data-dropdown]').remove()
+      burger2Shadow.classList.add('_active')
+
+      let input = document.createElement('textarea')
+
+      input.style = 'position: fixed; bottom: 60px; left: 10px; width: 200px; font-size: 14px; height: 100px; color: #FCFCFC; border: none; border-radius: 5px; padding: 10px; background: rgba(29, 28, 34, 1); z-index: 2000;'
+      // input.setAttribute('rows', '10')
+      // input.setAttribute('cols', '100')
+      input.setAttribute('placeholder', 'название')
+
+      document.body.appendChild(input)
+
+      input.value = ''
+
+      input.focus()
+
+      function mainText() {
+
+         targElem.insertAdjacentHTML('afterend', `
+            <div data-collection-point>${input.value}</div>
+         `)
+
+      }
+
+      input.addEventListener('keydown', (event) => {
+
+         if (event.key === 'Enter') {
+            event.preventDefault()
+
+            mainText()
+            input.remove()
+
+            burger2Shadow.classList.remove('_active')
+            document.querySelector('[data-dropdown]') && document.querySelector('[data-dropdown]').remove()
+            document.querySelector('[data-collection-point]._active').classList.remove('_active')
 
             set('burger2', document.querySelector('[data-burger-2]').innerHTML)
 
@@ -4798,6 +4985,7 @@ document.addEventListener('click', (event) => {
       const assetTextActive = document.querySelector('[data-asset-text]._active')
       const inputSecond = document.querySelector('[data-input-second]')
       const inputThird = document.querySelector('[data-input-third]')
+      document.querySelector('[data-collection]')?.classList.remove('_active')
       document.querySelector('[data-politic]')?.classList.remove('_active')
       document.querySelector('[data-polreward]')?.classList.remove('_active')
 
@@ -5612,4 +5800,6 @@ polRewardRang()
 
 
 
+document.querySelector('[data-polreward]').classList.remove('_active')
 document.querySelector('[data-politic]').classList.remove('_active')
+document.querySelector('[data-collection]').classList.remove('_active')
