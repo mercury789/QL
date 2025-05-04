@@ -146,6 +146,9 @@ button, select, input {
   font-weight: 500;
   background-color: rgba(29, 28, 34, 0.5);
 }
+input {
+  background-color: rgba(29, 28, 34, 0.8);
+}
 
 .name {
   font-size: 18px;
