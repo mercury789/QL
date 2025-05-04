@@ -833,7 +833,7 @@ document.addEventListener('click', (event) => {
          const inputValue = Number(input.value)
          const inputAtt = document.querySelector('[data-temp-input]').getAttribute('data-temp-input')
 
-         if (inputValue) {
+         if (inputValue && inputValue >= 20) {
 
             const pad = (n) => String(n).padStart(2, '0');
             const today = new Date();
@@ -865,11 +865,8 @@ document.addEventListener('click', (event) => {
                `)
             }
 
-            document.querySelector('[data-money-pos-add]').style.display = 'flex'
-            document.querySelector('[data-money-neg-add]').style.display = 'flex'
-            document.querySelector('[data-task-shadow]').classList.remove('_active')
-            input.remove()
-            targ.closest('[data-money-categories]').style.display = 'none'
+          
+       
 
             document.querySelector('[data-statmoney-num]').innerText = Number(inputValue).toFixed(2)
 
@@ -1034,6 +1031,9 @@ document.addEventListener('click', (event) => {
 
          }
 
+         document.querySelector('[data-task-shadow]').classList.remove('_active')
+         input.remove()
+         targ.closest('[data-money-categories]').style.display = 'none'
 
       } else {
          const oldAsset = targ.closest('[data-asset]')
@@ -1087,8 +1087,6 @@ document.addEventListener('click', (event) => {
 
                input.remove()
 
-               document.querySelector('[data-money-pos-add]').style.display = 'flex'
-               document.querySelector('[data-money-neg-add]').style.display = 'flex'
                document.querySelector('[data-task-shadow]').classList.remove('_active')
                document.querySelector('[data-asset-text]').classList.remove('_active')
                document.querySelector('[data-dropdown]') && document.querySelector('[data-dropdown]').remove()
@@ -1386,6 +1384,7 @@ document.addEventListener('click', (event) => {
 
       input.type = 'number'
       input.style = 'position: fixed; bottom: 60px; left: 10px; width: 40px; color: rgb(255, 230, 2);'
+      input.setAttribute('placeholder', '20')
       input.setAttribute('tabindex', '-1')
       input.setAttribute('data-temp-input', 'pos')
 
@@ -1403,6 +1402,7 @@ document.addEventListener('click', (event) => {
 
       input.type = 'number'
       input.style = 'position: fixed; bottom: 60px; left: 10px; width: 40px; color: rgb(255, 99, 132);'
+      input.setAttribute('placeholder', '20')
       input.setAttribute('tabindex', '-1')
       input.setAttribute('data-temp-input', 'neg')
 
