@@ -407,6 +407,8 @@ if (get('barData2') && JSON.parse(get('barData2')).length !== 0) {
 
    let endObj = barData2[barData2.length - 1];
    let oldNum = endObj.c;
+   oldNum = Number(oldNum.toFixed(2))
+
    log('[Последний бар barData2]:', endObj);
 
    const pad = (n) => String(n).padStart(2, '0');
@@ -908,8 +910,6 @@ document.addEventListener('click', (event) => {
             }
 
 
-
-
             document.querySelector('[data-statmoney-num]').innerText = Number(inputValue).toFixed(2)
 
             let num = Number(inputValue)
@@ -926,7 +926,7 @@ document.addEventListener('click', (event) => {
                         const profitClose = checkDate.c + num
                         const cleanProfitUP = profitClose - checkDate.o
                         const cleanProfitDOWN = checkDate.o - profitClose
-                        checkDate.c = profitClose
+                        checkDate.c = Number(profitClose.toFixed(2))
 
                         const statNum = document.querySelector('[data-statmoney-num]')
                         const statUsdt = document.querySelector('[data-statmoney-usdt]')
@@ -955,7 +955,7 @@ document.addEventListener('click', (event) => {
                         set('moneyStat', document.querySelector('[data-money-stat]').innerHTML)
 
                         if (profitClose >= checkDate.h) {
-                           checkDate.h = profitClose
+                           checkDate.h = Number(profitClose.toFixed(2))
 
                            video('finance')
                         } else {
@@ -968,7 +968,7 @@ document.addEventListener('click', (event) => {
                         const loseClose = checkDate.c - num
                         const cleanLoseDOWN = checkDate.o - loseClose
                         const cleanLoseUP = loseClose - checkDate.o
-                        checkDate.c = loseClose
+                        checkDate.c = Number(loseClose.toFixed(2))
 
                         const statNum = document.querySelector('[data-statmoney-num]')
                         const statUsdt = document.querySelector('[data-statmoney-usdt]')
@@ -998,7 +998,7 @@ document.addEventListener('click', (event) => {
                         set('moneyStat', document.querySelector('[data-money-stat]').innerHTML)
 
                         if (loseClose <= checkDate.l) {
-                           checkDate.l = loseClose
+                           checkDate.l = Number(loseClose.toFixed(2))
 
                            // video('lose')
 
@@ -2852,6 +2852,9 @@ document.addEventListener('click', (event) => {
 
       }
 
+      const noteBody = document.querySelector('[data-note-body]').innerHTML
+      set('noteBody', noteBody)
+
       // function timer() {
 
       //    if (targ.closest('[data-lobby-top]')) {
@@ -4047,12 +4050,13 @@ document.addEventListener('click', (event) => {
 
    if (targ.closest('[data-dublicate]')) {
       const shell = document.querySelector('[data-text]._active').closest('[data-shell]')
+      document.querySelector('[data-text]._active').classList.remove('_active')
+
       if (shell.nextElementSibling) {
          shell.nextElementSibling.insertAdjacentHTML('beforebegin', shell.outerHTML)
       }
       document.querySelector('[data-task-shadow]').classList.remove('_active')
       document.querySelector('[data-dropdown]').remove()
-      document.querySelector('[data-text]._active').classList.remove('_active')
 
       set('noteBody', document.querySelector('[data-note-body]').innerHTML)
    }
@@ -4920,7 +4924,7 @@ document.addEventListener('click', (event) => {
 
    if (targ.closest('[data-lobby-delete]')) {
       targ.closest('[data-lobby-point]').remove()
-      document.querySelector('[data-task-shadow]').style.display = 'none'
+      document.querySelector('[data-task-shadow]').classList.remove('_active')
 
       set('noteBody', document.querySelector('[data-note-body]').innerHTML)
 
