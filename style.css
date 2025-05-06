@@ -1630,6 +1630,12 @@ video {
 
 }
 
+[data-politic-body] {
+   /* height: 852px; */
+   overflow: auto;
+   padding-bottom: 50px;
+}
+
 
 [data-collection-button] {
    color: gray;
