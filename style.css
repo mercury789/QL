@@ -37,8 +37,8 @@ body{
   color: #FCFCFC;
   font-size: 18px;
   
-  /* padding-left: 10px; */
-  /* padding-right: 10px; */
+  padding-left: 10px;
+  padding-right: 10px;
   
   overflow-y: hidden;
   height: 100vh;
@@ -273,10 +273,7 @@ input {
 [data-body] {
    overflow-y: auto;
   
-   height: 375px;
-
-   padding-left: 10px;
-   padding-right: 10px;
+   height: 325px;
 }
 
 
@@ -340,9 +337,6 @@ input {
 
 [data-stat] {
   padding-top: 10px;
-
-  padding-left: 10px;
-  padding-right: 10px;
 }
 
 
@@ -390,9 +384,6 @@ video img {
 [data-task-main] {
    overflow-y: auto; 
    height: 386px;
-
-   padding-left: 10px;
-   padding-right: 10px;
 }
 [data-task-main]._active {
    display: none;
@@ -839,8 +830,7 @@ video {
 [data-money] {
    display: none;
 
-   padding-left: 10px;
-   padding-right: 10px;
+
 }
 [data-money-shell] {
    display: flex;
@@ -872,9 +862,6 @@ video {
 
 [data-money-stat] {
    padding-top: 10px;
-
-   padding-left: 10px;
-   padding-right: 10px;
 }
 
 
@@ -945,8 +932,7 @@ video {
    margin-bottom: 5px;
    font-size: 16px;
 
- padding-left: 10px;
- padding-right: 10px;
+ 
 
 }
 
@@ -972,9 +958,6 @@ video {
    display: none;
 
    font-size: 18px;
-
-   padding-left: 10px;
-   padding-right: 10px;
 }
 [data-assets]._active {
    display: block;
@@ -1358,8 +1341,6 @@ video {
 
 [data-note-stat] {
    margin-top: 10px;
-   padding-left: 10px;
-   padding-right: 10px;
 }
 
 
@@ -1478,9 +1459,6 @@ video {
    position: relative;
 
    user-select: none;
-
-   padding-left: 10px;
-   padding-right: 10px;
    
 }
 
