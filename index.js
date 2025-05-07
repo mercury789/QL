@@ -3762,6 +3762,11 @@ document.addEventListener('click', (event) => {
       inputThird.setAttribute('placeholder', 'время')
       inputThird.setAttribute('data-input-third', '')
 
+      document.body.appendChild(input)
+      document.body.appendChild(inputSecond)
+      document.body.appendChild(inputThird)
+
+      
       if (waterMax) {
 
          inputFourth.type = 'number'
@@ -3773,10 +3778,6 @@ document.addEventListener('click', (event) => {
 
       }
 
-
-      document.body.appendChild(input)
-      document.body.appendChild(inputSecond)
-      document.body.appendChild(inputThird)
 
       input.focus()
 
@@ -5068,6 +5069,7 @@ document.addEventListener('click', (event) => {
       const assetTextActive = document.querySelector('[data-asset-text]._active')
       const inputSecond = document.querySelector('[data-input-second]')
       const inputThird = document.querySelector('[data-input-third]')
+      const inputFourth = document.querySelector('[data-input-fourth]')
       document.querySelector('[data-collection]')?.classList.remove('_active')
       document.querySelector('[data-politic]')?.classList.remove('_active')
       document.querySelector('[data-polreward]')?.classList.remove('_active')
@@ -5083,9 +5085,10 @@ document.addEventListener('click', (event) => {
 
       text && text.classList.remove('_active')
       assetTextActive && assetTextActive.classList.remove('_active')
-      input && input.remove('_active')
-      inputSecond && inputSecond.remove('_active')
-      inputThird && inputThird.remove('_active')
+      input && input.remove()
+      inputSecond && inputSecond.remove()
+      inputThird && inputThird.remove()
+      inputFourth && inputFourth.remove()
 
       const tempPoint = document.querySelector('[data-lobby-point]._temp')
       tempPoint && tempPoint.classList.remove('_temp')
