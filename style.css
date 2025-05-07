@@ -1478,6 +1478,9 @@ video {
    position: relative;
 
    user-select: none;
+
+   padding-left: 10px;
+   padding-right: 10px;
    
 }
 
