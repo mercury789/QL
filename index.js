@@ -110,12 +110,6 @@ taskTimer()
 
 
 
-
-
-
-
-
-
 import { videos } from './videos.js'
 
 const memorySizes = {
@@ -339,6 +333,10 @@ if (get('barData') && JSON.parse(get('barData')).length !== 0) {
    var barData = JSON.parse(get('barData'));
    log('[barData загружен]:', barData);
 
+   if (barData.length === 37) {
+      barData.shift()
+   }
+
    let endObj = barData[barData.length - 1];
    let oldProcent = endObj.c;
    log('[Последний бар]:', endObj);
@@ -393,6 +391,8 @@ if (get('barData') && JSON.parse(get('barData')).length !== 0) {
       log('[Нет пропущенных дней, ничего не добавлено]');
    }
 
+
+
 } else {
    log('[barData не найден или пуст]');
    var barData = [];
@@ -404,6 +404,11 @@ if (get('barData2') && JSON.parse(get('barData2')).length !== 0) {
 
    var barData2 = JSON.parse(get('barData2'));
    log('[barData2 загружен]:', barData2);
+
+   
+   if (barData2.length === 37) {
+      barData2.shift()
+   }
 
    let endObj = barData2[barData2.length - 1];
    let oldNum = endObj.c;
@@ -473,6 +478,12 @@ if (get('barData2') && JSON.parse(get('barData2')).length !== 0) {
 
 if (get('barData3') && JSON.parse(get('barData3')).length !== 0) {
    var barData3 = JSON.parse(get('barData3'));
+   log('[barData3 загружен]:', barData3);
+
+   if (barData3.length === 37) {
+      barData3.shift()
+   }
+
    let endObj = barData3[barData3.length - 1];
    let oldNum = endObj.c;
 
@@ -1337,7 +1348,9 @@ document.addEventListener('click', (event) => {
 
          if (input.value !== '' && inputSecond.value) {
 
-            const actSeason = Number(document.querySelector('[data-actual-season]').getAttribute('data-actual-season'))
+            const actSeason = Number(document.querySelector('[data-actual-season]').innerText)
+            console.log(actSeason);
+            
 
             if (document.querySelector(`[data-season="${actSeason}"]`)) {
                document.querySelector(`[data-season="${actSeason}"]`).insertAdjacentHTML('beforeend', `
@@ -1346,14 +1359,15 @@ document.addEventListener('click', (event) => {
           
                   `)
 
-            } else {
+            } 
+            // else {
 
-               document.querySelector('[data-tituls]').insertAdjacentHTML('beforeend', `
-                  <div data-season="${actSeason}">
-                     <div data-titul="${color}">${input.value}</div>
-                   </div>
-               `)
-            }
+            //    document.querySelector('[data-tituls]').insertAdjacentHTML('beforeend', `
+            //       <div data-season="${actSeason}">
+            //          <div data-titul="${color}">${input.value}</div>
+            //        </div>
+            //    `)
+            // }
 
 
 
@@ -2728,6 +2742,16 @@ document.addEventListener('click', (event) => {
 
 
          let points = Number(markRang.getAttribute('data-mark-rang')) + 1
+         console.log(points);
+         
+
+         if (points >= 500) {
+            points = 500
+         }
+
+         console.log(points);
+         console.log(points >= 500);
+
 
          let rank = ranks.find(r => points >= r.min).rank;
 
@@ -5469,6 +5493,10 @@ function season() {
 
             let points = Number(dinamRank.getAttribute('data-dinam-rank')) + 1
 
+            if (points >= 500) {
+               points = 500
+            }
+
             let rank = ranks.find(r => points >= r.min).rank;
             let iconSrc = `icon/${rank}.png`;
 
@@ -5502,46 +5530,47 @@ function season() {
          const src = document.querySelector('[data-rang]').getAttribute('src')
          const number = Number(src.match(/\d+/)[0])
 
+
          if (number === 0) {
             color = 'brown'
             rang = 'никто'
          }
-
-         if (number === 1) {
+      
+         if (number === 1 || number === 2 || number === 3) {
             color = 'brown'
             rang = 'бронза'
          }
-         if (number === 2) {
+         if (number === 4 || number === 5 || number === 6) {
             color = 'gray'
             rang = 'серебро'
-
+      
          }
-         if (number === 3) {
+         if (number === 7 || number === 8 || number === 9) {
             color = 'yellow'
             rang = 'золото'
-
+      
          }
-         if (number === 4) {
+         if (number === 10 || number === 11 || number === 12) {
             color = 'goluboy'
             rang = 'платина'
-
+      
          }
-         if (number === 5) {
+         if (number === 13 || number === 14 || number === 15) {
             color = 'blue'
             rang = 'даймонд'
-
+      
          }
-         if (number === 6) {
+         if (number === 16 || number === 17 || number === 18) {
             color = 'fiolet'
             rang = 'чемпион'
-
+      
          }
-         if (number === 7) {
+         if (number === 19 || number === 20 || number === 21) {
             color = 'red'
             rang = 'великий чемпион'
-
+      
          }
-         if (number === 8) {
+         if (number === 22) {
             color = 'pink'
             rang = 'абсолютный чемпион'
          }
