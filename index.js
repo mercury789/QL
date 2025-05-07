@@ -405,7 +405,7 @@ if (get('barData2') && JSON.parse(get('barData2')).length !== 0) {
    var barData2 = JSON.parse(get('barData2'));
    log('[barData2 загружен]:', barData2);
 
-   
+
    if (barData2.length === 37) {
       barData2.shift()
    }
@@ -1350,7 +1350,7 @@ document.addEventListener('click', (event) => {
 
             const actSeason = Number(document.querySelector('[data-actual-season]').innerText)
             console.log(actSeason);
-            
+
 
             if (document.querySelector(`[data-season="${actSeason}"]`)) {
                document.querySelector(`[data-season="${actSeason}"]`).insertAdjacentHTML('beforeend', `
@@ -1359,7 +1359,7 @@ document.addEventListener('click', (event) => {
           
                   `)
 
-            } 
+            }
             // else {
 
             //    document.querySelector('[data-tituls]').insertAdjacentHTML('beforeend', `
@@ -2743,7 +2743,7 @@ document.addEventListener('click', (event) => {
 
          let points = Number(markRang.getAttribute('data-mark-rang')) + 1
          console.log(points);
-         
+
 
          if (points >= 500) {
             points = 500
@@ -3729,6 +3729,13 @@ document.addEventListener('click', (event) => {
       const targDropdown = document.querySelector('[data-dropdown]')
       const taskShadow = document.querySelector('[data-task-shadow]')
       const targDate = targShell.querySelector('[data-date]')
+      const targMax = targShell.querySelector('[data-max]')
+      const targNum = targShell.querySelector('[data-num]')
+      let waterMax
+      if (targText.innerText === 'вода') {
+         waterMax = Number(targMax.innerText)
+      }
+
 
       taskShadow.classList.add('_active')
       targDropdown.remove()
@@ -3736,6 +3743,7 @@ document.addEventListener('click', (event) => {
       let input = document.createElement('input')
       let inputSecond = document.createElement('input')
       let inputThird = document.createElement('input')
+      let inputFourth = document.createElement('input')
 
       input.type = 'text'
       input.style = 'position: fixed; bottom: 60px; left: 10px; width: 100px; color: #FCFCFC;'
@@ -3754,6 +3762,18 @@ document.addEventListener('click', (event) => {
       inputThird.setAttribute('placeholder', 'время')
       inputThird.setAttribute('data-input-third', '')
 
+      if (waterMax) {
+
+         inputFourth.type = 'number'
+         inputFourth.style = 'position: fixed; bottom: 60px; left: 265px; width: 40px; color: #FCFCFC;'
+         inputFourth.setAttribute('tabindex', '-1')
+         inputFourth.setAttribute('data-input-fourth', '')
+         document.body.appendChild(inputFourth)
+         inputFourth.value = waterMax
+
+      }
+
+
       document.body.appendChild(input)
       document.body.appendChild(inputSecond)
       document.body.appendChild(inputThird)
@@ -3762,6 +3782,7 @@ document.addEventListener('click', (event) => {
 
       input.value = targText.innerText
       inputSecond.value = targDate.innerText
+
 
       const infoTime = targShell.querySelector('[data-info-time]')
       const infoTimeDiv = targShell.querySelector('[data-info-time] div')
@@ -3795,97 +3816,131 @@ document.addEventListener('click', (event) => {
 
       })
 
-      inputThird.addEventListener('keydown', (event) => {
+      function main() {
 
-         if (event.key === 'Enter') {
-            event.preventDefault()
+         if (inputSecond.value && input.value !== '') {
 
-            if (inputSecond.value && input.value !== '') {
+            const newText = input.value
+            if (newText !== '' && newText) {
 
-               const newText = input.value
-               if (newText !== '' && newText) {
+               if (document.querySelector(`[data-lobby-body="${targText.innerText}"]`)) {
+                  document.querySelector(`[data-lobby-body="${targText.innerText}"]`).setAttribute('data-lobby-body', newText)
+               }
 
-                  if (document.querySelector(`[data-lobby-body="${targText.innerText}"]`)) {
-                     document.querySelector(`[data-lobby-body="${targText.innerText}"]`).setAttribute('data-lobby-body', newText)
+               targText.innerText = newText
+               targDate.innerText = inputSecond.value
+               if ((waterMax) && (inputFourth.value > Number(targNum.innerText)) && (inputFourth.value < targMax.innerText)) {
+                  targMax.innerText = inputFourth.value
+               }
+
+               log(Number(inputThird.value));
+
+               if (Number(inputThird.value)) {
+
+                  if (targShell.hasAttribute('data-note-categorie')) {
+                     infoTimeDiv.innerText = inputThird.value
                   }
 
-                  targText.innerText = newText
-                  targDate.innerText = inputSecond.value
+                  const nextShell = targShell.nextElementSibling
 
-                  log(Number(inputThird.value));
+                  if (nextShell && Number(inputThird.value)) {
 
-                  if (Number(inputThird.value)) {
+                     const nextShellDate = nextShell.querySelector('[data-date]')
 
-                     if (targShell.hasAttribute('data-note-categorie')) {
-                        infoTimeDiv.innerText = inputThird.value
-                     }
+                     const nextNewDate = Number(targDate.innerText) + Number(inputThird.value)
 
-                     const nextShell = targShell.nextElementSibling
+                     const oldTime = Number(nextShellDate.innerText)
 
-                     if (nextShell && Number(inputThird.value)) {
+                     nextShellDate.innerText = nextNewDate.toFixed(2)
 
-                        const nextShellDate = nextShell.querySelector('[data-date]')
+                     nextShell.classList.add('_newTime')
 
-                        const nextNewDate = Number(targDate.innerText) + Number(inputThird.value)
+                     let x = false
+                     let timeStart = oldTime
 
-                        const oldTime = Number(nextShellDate.innerText)
-
-                        nextShellDate.innerText = nextNewDate.toFixed(2)
-
-                        nextShell.classList.add('_newTime')
-
-                        let x = false
-                        let timeStart = oldTime
-
-                        log('test');
+                     log('test');
 
 
-                        const shellAll = targShell.closest('[data-task-body]').querySelectorAll('[data-shell]')
-                        shellAll.forEach((shell) => {
+                     const shellAll = targShell.closest('[data-task-body]').querySelectorAll('[data-shell]')
+                     shellAll.forEach((shell) => {
 
-                           const date = shell.querySelector('[data-date]')
+                        const date = shell.querySelector('[data-date]')
 
-                           if (x) {
+                        if (x) {
 
-                              const time = Number(date.innerText)
+                           const time = Number(date.innerText)
 
-                              const difference = time - timeStart
+                           const difference = time - timeStart
 
-                              const result = nextNewDate + difference
-                              date.innerText = result.toFixed(2)
+                           const result = nextNewDate + difference
+                           date.innerText = result.toFixed(2)
 
-                           }
+                        }
 
-                           if (shell.classList.contains('_newTime')) {
-                              x = true
-                           }
+                        if (shell.classList.contains('_newTime')) {
+                           x = true
+                        }
 
-                        })
+                     })
 
-
-                     }
 
                   }
 
                }
 
-               input.remove()
-               inputSecond.remove()
-               inputThird.remove()
+            }
 
-               targText.classList.remove('_active')
-               taskShadow.classList.remove('_active')
+            input.remove()
+            inputSecond.remove()
+            inputThird.remove()
+            if (waterMax) {
+               inputFourth.remove()
+            }
 
-               const newTime = document.querySelector('[data-shell]._newTime')
-               newTime && newTime.classList.remove('_newTime')
 
-               set('noteBody', document.querySelector('[data-note-body]').innerHTML)
+            targText.classList.remove('_active')
+            taskShadow.classList.remove('_active')
 
+            const newTime = document.querySelector('[data-shell]._newTime')
+            newTime && newTime.classList.remove('_newTime')
+
+            set('noteBody', document.querySelector('[data-note-body]').innerHTML)
+
+         }
+
+      }
+
+
+      inputThird.addEventListener('keydown', (event) => {
+
+         if (event.key === 'Enter') {
+            event.preventDefault()
+
+
+            if (waterMax) {
+               inputFourth.focus()
+            } else {
+               main()
             }
 
          }
 
       })
+
+      if (waterMax) {
+
+         inputFourth.addEventListener('keydown', (event) => {
+
+            if (event.key === 'Enter') {
+               event.preventDefault()
+
+               main()
+
+            }
+
+         })
+      }
+
 
    }
 
@@ -5535,7 +5590,7 @@ function season() {
             color = 'brown'
             rang = 'никто'
          }
-      
+
          if (number === 1 || number === 2 || number === 3) {
             color = 'brown'
             rang = 'бронза'
@@ -5543,32 +5598,32 @@ function season() {
          if (number === 4 || number === 5 || number === 6) {
             color = 'gray'
             rang = 'серебро'
-      
+
          }
          if (number === 7 || number === 8 || number === 9) {
             color = 'yellow'
             rang = 'золото'
-      
+
          }
          if (number === 10 || number === 11 || number === 12) {
             color = 'goluboy'
             rang = 'платина'
-      
+
          }
          if (number === 13 || number === 14 || number === 15) {
             color = 'blue'
             rang = 'даймонд'
-      
+
          }
          if (number === 16 || number === 17 || number === 18) {
             color = 'fiolet'
             rang = 'чемпион'
-      
+
          }
          if (number === 19 || number === 20 || number === 21) {
             color = 'red'
             rang = 'великий чемпион'
-      
+
          }
          if (number === 22) {
             color = 'pink'
