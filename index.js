@@ -2399,7 +2399,12 @@ document.addEventListener('click', (event) => {
 
                      } else {
 
+                        console.log('test1');
+                        
+
                         if (!up) {
+                        console.log('test2');
+
                            video('lose') // oldLose
                            log(`lose: ${procent} < ${checkDate.c}`);
                         }
