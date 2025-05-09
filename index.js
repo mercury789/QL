@@ -2276,7 +2276,7 @@ document.addEventListener('click', (event) => {
          targ.innerHTML = num
 
 
-         if ((num || num === 0) && num !== oldValue) {
+         if ((num || num === 0) && (num !== oldValue)) {
 
             let decorProc = num
 
