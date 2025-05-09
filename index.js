@@ -2400,7 +2400,7 @@ document.addEventListener('click', (event) => {
                      } else {
 
                         if (!up) {
-                           // video('lose') // oldLose
+                           video('lose') // oldLose
                            log(`lose: ${procent} < ${checkDate.c}`);
                         }
 
