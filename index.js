@@ -1,3 +1,12 @@
+window.onerror = function (message, source, lineno, colno, error) {
+   console.log('============= ERROR ============');
+   console.error("ошибка:", message);
+   console.error("стек:", error?.stack);
+   console.log('============= ERROR ============');
+
+};
+
+
 function set(name, value) {
    localStorage.setItem(name, value)
 }
@@ -38,7 +47,7 @@ function waterTimer() {
 
    if (end) {
       let left = (parseInt(end) - Date.now()) / 1000
-      log('Осталось секунд:', left)
+      log('сталось секунд:', left)
 
       if (left <= 0) {
          left = 0
@@ -46,7 +55,7 @@ function waterTimer() {
 
       setTimeout(() => {
 
-         log('setTimeout start');
+         log('etTimeout start');
 
          navigator.serviceWorker.ready.then(reg => {
             reg.showNotification(`вода`)
@@ -72,7 +81,7 @@ function taskTimer() {
 
    if (end) {
       let left = (parseInt(end) - Date.now()) / 1000
-      log('Осталось секунд:', left)
+      log('сталось секунд:', left)
 
       if (left <= 0) {
          left = 0
@@ -84,7 +93,7 @@ function taskTimer() {
 
          if (targ) {
 
-            log('setTimeout end');
+            log('etTimeout end');
 
             navigator.serviceWorker.ready.then(reg => {
                reg.showNotification(targ.querySelector('[data-text]').innerText)
@@ -169,16 +178,16 @@ if (local) {
 
    if ('serviceWorker' in navigator) {
       navigator.serviceWorker.register('/sw.js')
-         .then(() => log("✅ SW зарегистрирован"))
-         .catch(err => console.error("❌ Ошибка SW:", err))
+         .then(() => log("sw зарегистрирован"))
+         .catch(err => console.error("❌ Ошибка sw:", err))
    }
 
 } else {
 
    if ('serviceWorker' in navigator) {
       navigator.serviceWorker.register('/ql/sw.js')
-         .then(() => log("✅ SW зарегистрирован"))
-         .catch(err => console.error("❌ Ошибка SW:", err))
+         .then(() => log("sw зарегистрирован"))
+         .catch(err => console.error("❌ Ошибка sw:", err))
    }
 
 }
@@ -186,9 +195,9 @@ if (local) {
 if (Notification.permission !== "granted") {
    Notification.requestPermission().then(permission => {
       if (permission === "granted") {
-         log("Разрешение на уведомления получено!")
+         log("разрешение на уведомления получено")
       } else {
-         log("Разрешение на уведомления отклонено.")
+         log("разрешение на уведомления отклонено")
       }
    })
 }
@@ -234,7 +243,7 @@ function random(mode) {
 
    saveMemory(mode, memory)
 
-   log(`MEMORY: ${memory}`)
+   log(`${mode} MEMORY: ${memory}`)
    return src
 }
 
@@ -331,7 +340,7 @@ if (get('barData') && JSON.parse(get('barData')).length !== 0) {
    document.querySelector('[data-start]')?.remove();
 
    var barData = JSON.parse(get('barData'));
-   log('[barData загружен]:', barData);
+   log(`barData: ${JSON.stringify(barData)}`);
 
    if (barData.length === 37) {
       barData.shift()
@@ -339,7 +348,7 @@ if (get('barData') && JSON.parse(get('barData')).length !== 0) {
 
    let endObj = barData[barData.length - 1];
    let oldProcent = endObj.c;
-   log('[Последний бар]:', endObj);
+   log(`endObj: ${JSON.stringify(endObj)}`);
 
    const pad = (n) => String(n).padStart(2, '0');
 
@@ -360,9 +369,9 @@ if (get('barData') && JSON.parse(get('barData')).length !== 0) {
 
    const daysDiff = Math.floor((today - lastDate) / 86400000);
 
-   log(`[Дата последнего бара]: ${lastDate.toDateString()}`);
-   log(`[Сегодня]: ${today.toDateString()}`);
-   log(`[Разница в днях]: ${daysDiff}`);
+   log(`дата ласт бара: ${lastDate.toDateString()}`);
+   log(`сегодня: ${today.toDateString()}`);
+   log(`разница в днях: ${daysDiff}`);
 
    if (daysDiff > 0) {
       for (let i = 1; i <= daysDiff; i++) {
@@ -370,7 +379,7 @@ if (get('barData') && JSON.parse(get('barData')).length !== 0) {
          const nextDateStr = formatDateStr(nextDate);
          const newX = barData[barData.length - 1].x + 86400000;
 
-         log(`[Добавляем бар за ${nextDateStr}]`);
+         log(`добавляем бар за: ${nextDateStr}]`);
 
          barData.push({ x: newX, o: oldProcent, h: oldProcent, l: oldProcent, c: oldProcent, date: nextDateStr });
 
@@ -381,20 +390,19 @@ if (get('barData') && JSON.parse(get('barData')).length !== 0) {
       }
 
       if (barData.length === 3 && barData[0].date === '') {
-         log('[Удалён пустой первый бар]');
+         log('далён пустой первый бар');
          barData.shift();
       }
 
       set('barData', JSON.stringify(barData));
-      log('[barData обновлён и сохранён]');
    } else {
-      log('[Нет пропущенных дней, ничего не добавлено]');
+      log('нет пропущенных дней, ничего не добавлено');
    }
 
 
 
 } else {
-   log('[barData не найден или пуст]');
+   log('barData не найден или пуст');
    var barData = [];
 }
 
@@ -403,7 +411,7 @@ if (get('barData2') && JSON.parse(get('barData2')).length !== 0) {
    document.querySelector('[data-money-start]')?.remove();
 
    var barData2 = JSON.parse(get('barData2'));
-   log('[barData2 загружен]:', barData2);
+   log(`barData2: ${JSON.stringify(barData2)}`);
 
 
    if (barData2.length === 37) {
@@ -414,7 +422,7 @@ if (get('barData2') && JSON.parse(get('barData2')).length !== 0) {
    let oldNum = endObj.c;
    oldNum = Number(oldNum.toFixed(2))
 
-   log('[Последний бар barData2]:', endObj);
+   // log('Последний бар barData2:', endObj);
 
    const pad = (n) => String(n).padStart(2, '0');
 
@@ -435,9 +443,9 @@ if (get('barData2') && JSON.parse(get('barData2')).length !== 0) {
 
    const daysDiff = Math.floor((today - lastDate) / 86400000);
 
-   log(`[Дата последнего бара barData2]: ${lastDate.toDateString()}`);
-   log(`[Сегодня]: ${today.toDateString()}`);
-   log(`[Разница в днях]: ${daysDiff}`);
+   log(`дата последнего бара barData2: ${lastDate.toDateString()}`);
+   log(`сегодня: ${today.toDateString()}`);
+   log(`разница в днях: ${daysDiff}`);
 
    if (daysDiff > 0) {
       for (let i = 1; i <= daysDiff; i++) {
@@ -445,7 +453,7 @@ if (get('barData2') && JSON.parse(get('barData2')).length !== 0) {
          const nextDateStr = formatDateStr(nextDate);
          const newX = barData2[barData2.length - 1].x + 86400000;
 
-         log(`[Добавляем бар в barData2 за ${nextDateStr}]`);
+         log(`добавляем бар в barData2 за ${nextDateStr}]`);
 
          barData2.push({ x: newX, o: oldNum, h: oldNum, l: oldNum, c: oldNum, date: nextDateStr });
 
@@ -455,21 +463,21 @@ if (get('barData2') && JSON.parse(get('barData2')).length !== 0) {
       }
 
       if (barData2.length === 3 && barData2[0].date === '') {
-         log('[Удалён пустой первый бар в barData2]');
+         log('удалён пустой первый бар в barData2]');
          barData2.shift();
       }
 
       set('barData2', JSON.stringify(barData2));
-      log('[barData2 обновлён и сохранён]');
+      log('barData2 обновлён и сохранён]');
    } else {
-      log('[Нет пропущенных дней в barData2, ничего не добавлено]');
+      log('нет пропущенных дней в barData2, ничего не добавлено');
    }
 
    document.querySelector('[data-money]').innerHTML = get('money');
    document.querySelector('[data-assets]').innerHTML = get('assets');
 
 } else {
-   log('[barData2 не найден или пуст]');
+   log('barData2 не найден или пуст]');
    var barData2 = [];
    document.querySelector('[data-money-neg-add]').classList.add('_block');
    document.querySelector('[data-money-neg-add]').style.display = 'none';
@@ -478,7 +486,7 @@ if (get('barData2') && JSON.parse(get('barData2')).length !== 0) {
 
 if (get('barData3') && JSON.parse(get('barData3')).length !== 0) {
    var barData3 = JSON.parse(get('barData3'));
-   log('[barData3 загружен]:', barData3);
+   log(`barData3: ${JSON.stringify(barData3)}`);
 
    if (barData3.length === 37) {
       barData3.shift()
@@ -2399,11 +2407,11 @@ document.addEventListener('click', (event) => {
 
                      } else {
 
-                        log('test1');
-                        
+                        log('est1');
+
 
                         if (!up) {
-                        log('test2');
+                           log('est2');
 
                            video('lose') // oldLose
                            log(`lose: ${procent} < ${checkDate.c}`);
@@ -2820,7 +2828,7 @@ document.addEventListener('click', (event) => {
 
          if (checkDate) {
 
-            log('checkDate');
+            log('heckDate');
             log(num);
 
 
@@ -3081,7 +3089,7 @@ document.addEventListener('click', (event) => {
          if (decor.style.width === '100%') {
             x = x + 1
 
-            log('YES');
+            log('ES');
 
          } else {
 
@@ -3771,7 +3779,7 @@ document.addEventListener('click', (event) => {
       document.body.appendChild(inputSecond)
       document.body.appendChild(inputThird)
 
-      
+
       if (waterMax) {
 
          inputFourth.type = 'number'
@@ -3864,7 +3872,7 @@ document.addEventListener('click', (event) => {
                      let x = false
                      let timeStart = oldTime
 
-                     log('test');
+                     log('est');
 
 
                      const shellAll = targShell.closest('[data-task-body]').querySelectorAll('[data-shell]')
@@ -4947,7 +4955,7 @@ document.addEventListener('click', (event) => {
       lobbyPoint.classList.add('_lose')
 
       video('lose') // oldLose
-      log('lose');
+      log('ose');
 
       const pad = (n) => String(n).padStart(2, '0');
       const today = new Date();
@@ -5537,9 +5545,9 @@ function season() {
    const today = new Date();
    const date = `${pad(today.getDate())}${pad(today.getMonth() + 1)}${today.getFullYear()}`;
 
-   log(`${document.querySelector('[data-season-date]').innerText} !== ${date}`);
-   log(document.querySelector('[data-season-date]').innerText);
-   log(date);
+   log(`${document.querySelector('[data-season-date]').getAttribute('data-season-date')} !== ${date}`);
+   // log(document.querySelector('[data-season-date]').innerText);
+   // log(date);
 
 
    if (document.querySelector('[data-season-date]').getAttribute('data-season-date') !== date) {
