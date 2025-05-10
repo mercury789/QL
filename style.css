@@ -829,7 +829,8 @@ video {
 
 [data-money] {
    display: none;
-
+   overflow: auto;
+   height: 375px;
 
 }
 [data-money-shell] {
@@ -1452,7 +1453,7 @@ video {
    gap: 15px;
 
    /* border-bottom: 1px solid #3C3C3C; */
-   margin-bottom: 5px;
+   margin-bottom: 10px;
    font-size: 16px;
 
  

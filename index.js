@@ -5454,6 +5454,9 @@ document.addEventListener('click', (event) => {
 
       }
 
+      set('noteBody', document.querySelector('[data-note-body]').innerHTML)
+
+
    }
 
 })
