@@ -831,7 +831,7 @@ video {
    display: none;
    overflow: auto;
    height: 375px;
-
+   padding-bottom: 100px;
 }
 [data-money-shell] {
    display: flex;
