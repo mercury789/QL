@@ -41,6 +41,12 @@ function log(info) {
 
 
 
+
+
+
+
+
+
 function waterTimer() {
 
    const end = get('waterEnd')
@@ -341,6 +347,7 @@ if (get('barData') && JSON.parse(get('barData')).length !== 0) {
 
    var barData = JSON.parse(get('barData'));
    log(`barData: ${JSON.stringify(barData)}`);
+   log(`barData length: ${barData.length}`);
 
    if (barData.length === 37) {
       barData.shift()
@@ -412,6 +419,8 @@ if (get('barData2') && JSON.parse(get('barData2')).length !== 0) {
 
    var barData2 = JSON.parse(get('barData2'));
    log(`barData2: ${JSON.stringify(barData2)}`);
+   log(`barData2 length: ${barData2.length}`);
+
 
 
    if (barData2.length === 37) {
@@ -487,6 +496,8 @@ if (get('barData2') && JSON.parse(get('barData2')).length !== 0) {
 if (get('barData3') && JSON.parse(get('barData3')).length !== 0) {
    var barData3 = JSON.parse(get('barData3'));
    log(`barData3: ${JSON.stringify(barData3)}`);
+   log(`barData3 length: ${barData3.length}`);
+
 
    if (barData3.length === 37) {
       barData3.shift()
