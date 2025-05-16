@@ -38,15 +38,6 @@ function log(info) {
 }
 
 
-
-
-
-
-
-
-
-
-
 function waterTimer() {
 
    const end = get('waterEnd')
@@ -263,7 +254,8 @@ function video(mode) {
       const source = videoElement.querySelector('source');
 
       // Устанавливаем новый источник видео
-      source.setAttribute('src', `video/${mode}/${src}.mp4`);
+      // source.setAttribute('src', `video/${mode}/${src}.mp4`);
+      source.setAttribute('src', `https://pub-8483c5d31fd245f59e7083e9522cadbe.r2.dev/${mode}/${src}.mp4`);
 
       // Загружаем видео
       videoElement.load();
@@ -287,8 +279,6 @@ function video(mode) {
    } else {
       log('эдиты выкл');
    }
-
-
 
    // set(mode, src) // если тебе надо сохранять куда-то ещё
 }
