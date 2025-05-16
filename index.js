@@ -339,9 +339,7 @@ if (get('barData') && JSON.parse(get('barData')).length !== 0) {
    log(`barData: ${JSON.stringify(barData)}`);
    log(`barData length: ${barData.length}`);
 
-   if (barData.length === 37) {
-      barData.shift()
-   }
+
 
    let endObj = barData[barData.length - 1];
    let oldProcent = endObj.c;
@@ -391,6 +389,57 @@ if (get('barData') && JSON.parse(get('barData')).length !== 0) {
          barData.shift();
       }
 
+      function exportSave() {
+
+         const base = get('base');
+         const stat = get('stat');
+         const bgRang = get('bgRang');
+         const noteBody = get('noteBody');
+
+         // const barData2 = get('barData2');
+         // const barData3 = get('barData3');
+         const money = get('money');
+         const moneyStat = get('moneyStat');
+         const noteStat = get('noteStat');
+         const assets = get('assets');
+         const burger2 = get('burger2');
+
+         const pad = (n) => String(n).padStart(2, '0');
+         const today = new Date();
+         const date = `${pad(today.getDate())}.${pad(today.getMonth() + 1)}.${today.getFullYear()}`;
+
+         targ.style.backgroundColor = '#112A21';
+
+         const copy = barData;
+         const copy2 = barData2;
+         const copy3 = barData3;
+         const content = `${JSON.stringify(copy)}@${JSON.stringify(copy2)}@${JSON.stringify(copy3)}@${stat}@${moneyStat}@${noteStat}@${base}@${money}@${noteBody}@${bgRang}@${assets}@${burger2}`;
+         navigator.clipboard.writeText(content);
+
+
+         // Создаем Blob (файл в памяти)
+         const blob = new Blob([content], { type: 'text/plain' });
+
+         // Создаем ссылку на Blob и эмулируем клик по ней для скачивания файла
+         const a = document.createElement('a');
+         a.href = URL.createObjectURL(blob);
+         a.download = `ql_${date}.txt`; // Имя файла
+         document.body.appendChild(a);
+         a.click();
+         document.body.removeChild(a);
+
+         // Освобождаем память
+         URL.revokeObjectURL(a.href);
+
+      }
+      exportSave()
+
+      if (barData.length === 37) {
+         barData.shift()
+
+         log('barData.shift()')
+      }
+
       set('barData', JSON.stringify(barData));
    } else {
       log('нет пропущенных дней, ничего не добавлено');
@@ -411,11 +460,6 @@ if (get('barData2') && JSON.parse(get('barData2')).length !== 0) {
    log(`barData2: ${JSON.stringify(barData2)}`);
    log(`barData2 length: ${barData2.length}`);
 
-
-
-   if (barData2.length === 37) {
-      barData2.shift()
-   }
 
    let endObj = barData2[barData2.length - 1];
    let oldNum = endObj.c;
@@ -466,6 +510,12 @@ if (get('barData2') && JSON.parse(get('barData2')).length !== 0) {
          barData2.shift();
       }
 
+      if (barData2.length === 37) {
+         barData2.shift()
+
+         log('barData2.shift()')
+      }
+
       set('barData2', JSON.stringify(barData2));
       log('barData2 обновлён и сохранён]');
    } else {
@@ -489,9 +539,6 @@ if (get('barData3') && JSON.parse(get('barData3')).length !== 0) {
    log(`barData3 length: ${barData3.length}`);
 
 
-   if (barData3.length === 37) {
-      barData3.shift()
-   }
 
    let endObj = barData3[barData3.length - 1];
    let oldNum = endObj.c;
@@ -525,6 +572,13 @@ if (get('barData3') && JSON.parse(get('barData3')).length !== 0) {
 
       if (barData3.length === 3 && barData3[0].date === '') {
          barData3.shift();
+      }
+
+
+      if (barData3.length === 37) {
+         barData3.shift()
+
+         log('barData3.shift()')
       }
 
       set('barData3', JSON.stringify(barData3));
@@ -2181,47 +2235,7 @@ document.addEventListener('click', (event) => {
    }
 
 
-   if (targ.closest('[data-export]')) {
-      const base = get('base');
-      const stat = get('stat');
-      const bgRang = get('bgRang');
-      const noteBody = get('noteBody');
 
-      // const barData2 = get('barData2');
-      // const barData3 = get('barData3');
-      const money = get('money');
-      const moneyStat = get('moneyStat');
-      const noteStat = get('noteStat');
-      const assets = get('assets');
-      const burger2 = get('burger2');
-
-      const pad = (n) => String(n).padStart(2, '0');
-      const today = new Date();
-      const date = `${pad(today.getDate())}.${pad(today.getMonth() + 1)}.${today.getFullYear()}`;
-
-      targ.style.backgroundColor = '#112A21';
-
-      const copy = barData;
-      const copy2 = barData2;
-      const copy3 = barData3;
-      const content = `${JSON.stringify(copy)}@${JSON.stringify(copy2)}@${JSON.stringify(copy3)}@${stat}@${moneyStat}@${noteStat}@${base}@${money}@${noteBody}@${bgRang}@${assets}@${burger2}`;
-      navigator.clipboard.writeText(content);
-
-
-      // Создаем Blob (файл в памяти)
-      const blob = new Blob([content], { type: 'text/plain' });
-
-      // Создаем ссылку на Blob и эмулируем клик по ней для скачивания файла
-      const a = document.createElement('a');
-      a.href = URL.createObjectURL(blob);
-      a.download = `ql_${date}.txt`; // Имя файла
-      document.body.appendChild(a);
-      a.click();
-      document.body.removeChild(a);
-
-      // Освобождаем память
-      URL.revokeObjectURL(a.href);
-   }
 
    // if (targ.closest('[data-import]')) {
 
