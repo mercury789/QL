@@ -1,4 +1,4 @@
-<<<<<<< HEAD
+
 import { promises as fs } from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';
@@ -69,7 +69,7 @@ async function processAllModes() {
 }
 
 processAllModes().catch(err => console.error('Критическая ошибка:', err));
-=======
+
 const fs = require('fs').promises;
 const path = require('path');
 
@@ -142,4 +142,4 @@ processAllModes().catch(err => console.error('Критическая ошибк�
 
 
 
->>>>>>> d858da2f711915f8fbfdeeb0ad2c41bf78f8bd22
+
