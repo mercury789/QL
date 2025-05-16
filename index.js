@@ -1,10 +1,10 @@
-window.onerror = function (message, source, lineno, colno, error) {
-   console.log('============= ERROR ============');
-   console.error("ошибка:", message);
-   console.error("стек:", error?.stack);
-   console.log('============= ERROR ============');
+// window.onerror = function (message, source, lineno, colno, error) {
+//    console.log('============= ERROR ============');
+//    console.error("ошибка:", message);
+//    console.error("стек:", error?.stack);
+//    console.log('============= ERROR ============');
 
-};
+// };
 
 
 function set(name, value) {
@@ -408,7 +408,7 @@ if (get('barData') && JSON.parse(get('barData')).length !== 0) {
          const today = new Date();
          const date = `${pad(today.getDate())}.${pad(today.getMonth() + 1)}.${today.getFullYear()}`;
 
-         targ.style.backgroundColor = '#112A21';
+         // document.querySelector('[data-export]').style.backgroundColor = '#112A21';
 
          const copy = barData;
          const copy2 = barData2;
