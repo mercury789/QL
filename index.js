@@ -38,37 +38,37 @@ function log(info) {
 }
 
 
-function waterTimer() {
+// function waterTimer() {
 
-   const end = get('waterEnd')
+//    const end = get('waterEnd')
 
-   if (end) {
-      let left = (parseInt(end) - Date.now()) / 1000
-      log('сталось секунд:', left)
+//    if (end) {
+//       let left = (parseInt(end) - Date.now()) / 1000
+//       log('сталось секунд:', left)
 
-      if (left <= 0) {
-         left = 0
-      }
+//       if (left <= 0) {
+//          left = 0
+//       }
 
-      setTimeout(() => {
+//       setTimeout(() => {
 
-         log('etTimeout start');
+//          log('etTimeout start');
 
-         navigator.serviceWorker.ready.then(reg => {
-            reg.showNotification(`вода`)
-         })
+//          navigator.serviceWorker.ready.then(reg => {
+//             reg.showNotification(`вода`)
+//          })
 
-         get('waterEnd') && rem('waterEnd')
-
-
+//          get('waterEnd') && rem('waterEnd')
 
 
-      }, left * 1000)
 
-   }
 
-}
-waterTimer()
+//       }, left * 1000)
+
+//    }
+
+// }
+// waterTimer()
 
 
 
@@ -184,38 +184,38 @@ log(url);
 
 // url = 'https://mercury789.github.io/ql/'
 
-const local = url === 'http://127.0.0.1:5501/' ? true : false
+// const local = url === 'http://127.0.0.1:5501/' ? true : false
 
-log(local);
+// log(local);
 
 
-if (local) {
+// if (local) {
 
-   if ('serviceWorker' in navigator) {
-      navigator.serviceWorker.register('/sw.js')
-         .then(() => log("sw зарегистрирован"))
-         .catch(err => console.error("❌ Ошибка sw:", err))
-   }
+//    if ('serviceWorker' in navigator) {
+//       navigator.serviceWorker.register('/sw.js')
+//          .then(() => log("sw зарегистрирован"))
+//          .catch(err => console.error("❌ Ошибка sw:", err))
+//    }
 
-} else {
+// } else {
 
-   if ('serviceWorker' in navigator) {
-      navigator.serviceWorker.register('/ql/sw.js')
-         .then(() => log("sw зарегистрирован"))
-         .catch(err => console.error("❌ Ошибка sw:", err))
-   }
+//    if ('serviceWorker' in navigator) {
+//       navigator.serviceWorker.register('/ql/sw.js')
+//          .then(() => log("sw зарегистрирован"))
+//          .catch(err => console.error("❌ Ошибка sw:", err))
+//    }
 
-}
+// }
 
-if (Notification.permission !== "granted") {
-   Notification.requestPermission().then(permission => {
-      if (permission === "granted") {
-         log("разрешение на уведомления получено")
-      } else {
-         log("разрешение на уведомления отклонено")
-      }
-   })
-}
+// if (Notification.permission !== "granted") {
+//    Notification.requestPermission().then(permission => {
+//       if (permission === "granted") {
+//          log("разрешение на уведомления получено")
+//       } else {
+//          log("разрешение на уведомления отклонено")
+//       }
+//    })
+// }
 
 // загружаем из localStorage
 function loadMemory(mode) {
