@@ -12,12 +12,12 @@ async function loadVideos() {
    try {
       const res = await fetch('https://r2-video-counter.ql-media.workers.dev');
       if (!res.ok) throw new Error('Network error');
-      videos = await res.json();
-      console.log('videos:', videos);
-      // теперь videos — объект вида:
+      memorySizes = await res.json();
+      console.log('memorySizes:', memorySizes);
+      // теперь memorySizes — объект вида:
       // { general: 62, absolute: 2, lose: 13, upgrade: 1, finance: 5 }
    } catch (e) {
-      console.error('Failed to load videos:', e);
+      console.error('Failed to load memorySizes:', e);
    }
 }
 

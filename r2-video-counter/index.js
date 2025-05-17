@@ -13,7 +13,6 @@ export default {
           cursor,
         })
 
-        // считаем только .mp4 файлы
         count += list.objects.filter(obj => obj.key.endsWith(".mp4")).length
         cursor = list.truncated ? list.cursor : null
       } while (cursor)
@@ -21,8 +20,25 @@ export default {
       videoCounts[folder] = count
     }
 
-    return new Response(JSON.stringify(videoCounts), {
-      headers: { "Content-Type": "application/json" },
+    const response = new Response(JSON.stringify(videoCounts), {
+      headers: {
+        "Content-Type": "application/json",
+        "Access-Control-Allow-Origin": "*",  // вот этот заголовок решает проблему
+        "Access-Control-Allow-Methods": "GET, OPTIONS",
+      },
     })
+
+    // для обработки preflight запроса OPTIONS, если нужно
+    if (request.method === "OPTIONS") {
+      return new Response(null, {
+        headers: {
+          "Access-Control-Allow-Origin": "*",
+          "Access-Control-Allow-Methods": "GET, OPTIONS",
+          "Access-Control-Allow-Headers": "Content-Type",
+        },
+      })
+    }
+
+    return response
   }
 }
