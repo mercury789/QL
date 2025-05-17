@@ -6,6 +6,28 @@
 
 // };
 
+let memorySizes = {};
+
+async function loadVideos() {
+   try {
+      const res = await fetch('https://r2-video-counter.ql-media.workers.dev');
+      if (!res.ok) throw new Error('Network error');
+      videos = await res.json();
+      console.log('videos:', videos);
+      // теперь videos — объект вида:
+      // { general: 62, absolute: 2, lose: 13, upgrade: 1, finance: 5 }
+   } catch (e) {
+      console.error('Failed to load videos:', e);
+   }
+}
+
+// вызываем загрузку
+loadVideos();
+
+console.log(memorySizes);
+
+
+
 
 function set(name, value) {
    localStorage.setItem(name, value)
@@ -116,15 +138,15 @@ taskTimer()
 
 
 
-import { videos } from './videos.js'
+// import { videos } from './videos.js'
 
-const memorySizes = {
-   general: 30,
-   absolute: 1,
-   upgrade: 1,
-   lose: 5,
-   finance: 3,
-}
+// const memorySizes = {
+//    general: 30,
+//    absolute: 1,
+//    upgrade: 1,
+//    lose: 5,
+//    finance: 3,
+// }
 
 var up = false
 
