@@ -37,6 +37,50 @@ function log(info) {
 
 }
 
+function exportSave() {
+
+   const base = get('base');
+   const stat = get('stat');
+   const bgRang = get('bgRang');
+   const noteBody = get('noteBody');
+
+   // const barData2 = get('barData2');
+   // const barData3 = get('barData3');
+   const money = get('money');
+   const moneyStat = get('moneyStat');
+   const noteStat = get('noteStat');
+   const assets = get('assets');
+   const burger2 = get('burger2');
+
+   const pad = (n) => String(n).padStart(2, '0');
+   const today = new Date();
+   const date = `${pad(today.getDate())}.${pad(today.getMonth() + 1)}.${today.getFullYear()}`;
+
+   // document.querySelector('[data-export]').style.backgroundColor = '#112A21';
+
+   const copy = barData;
+   const copy2 = barData2;
+   const copy3 = barData3;
+   const content = `${JSON.stringify(copy)}@${JSON.stringify(copy2)}@${JSON.stringify(copy3)}@${stat}@${moneyStat}@${noteStat}@${base}@${money}@${noteBody}@${bgRang}@${assets}@${burger2}`;
+   navigator.clipboard.writeText(content);
+
+
+   // Создаем Blob (файл в памяти)
+   const blob = new Blob([content], { type: 'text/plain' });
+
+   // Создаем ссылку на Blob и эмулируем клик по ней для скачивания файла
+   const a = document.createElement('a');
+   a.href = URL.createObjectURL(blob);
+   a.download = `ql_${date}.txt`; // Имя файла
+   document.body.appendChild(a);
+   a.click();
+   document.body.removeChild(a);
+
+   // Освобождаем память
+   URL.revokeObjectURL(a.href);
+
+}
+
 
 // function waterTimer() {
 
@@ -407,49 +451,7 @@ if (get('barData') && JSON.parse(get('barData')).length !== 0) {
          barData.shift();
       }
 
-      function exportSave() {
 
-         const base = get('base');
-         const stat = get('stat');
-         const bgRang = get('bgRang');
-         const noteBody = get('noteBody');
-
-         // const barData2 = get('barData2');
-         // const barData3 = get('barData3');
-         const money = get('money');
-         const moneyStat = get('moneyStat');
-         const noteStat = get('noteStat');
-         const assets = get('assets');
-         const burger2 = get('burger2');
-
-         const pad = (n) => String(n).padStart(2, '0');
-         const today = new Date();
-         const date = `${pad(today.getDate())}.${pad(today.getMonth() + 1)}.${today.getFullYear()}`;
-
-         // document.querySelector('[data-export]').style.backgroundColor = '#112A21';
-
-         const copy = barData;
-         const copy2 = barData2;
-         const copy3 = barData3;
-         const content = `${JSON.stringify(copy)}@${JSON.stringify(copy2)}@${JSON.stringify(copy3)}@${stat}@${moneyStat}@${noteStat}@${base}@${money}@${noteBody}@${bgRang}@${assets}@${burger2}`;
-         navigator.clipboard.writeText(content);
-
-
-         // Создаем Blob (файл в памяти)
-         const blob = new Blob([content], { type: 'text/plain' });
-
-         // Создаем ссылку на Blob и эмулируем клик по ней для скачивания файла
-         const a = document.createElement('a');
-         a.href = URL.createObjectURL(blob);
-         a.download = `ql_${date}.txt`; // Имя файла
-         document.body.appendChild(a);
-         a.click();
-         document.body.removeChild(a);
-
-         // Освобождаем память
-         URL.revokeObjectURL(a.href);
-
-      }
       exportSave()
 
       if (barData.length === 37) {
@@ -841,6 +843,11 @@ function convertTimeToMilliseconds(timeStr) {
 document.addEventListener('click', (event) => {
 
    const targ = event.target
+
+   if (targ.closest('[data-export]')) {
+      exportSave()
+      // targ.style.background = '#1aa3c9;'
+   }
 
    if (targ.closest('[data-footer-name]')) {
       const att = targ.closest('[data-footer-name]').getAttribute('data-footer-name')
