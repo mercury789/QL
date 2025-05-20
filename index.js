@@ -5689,6 +5689,14 @@ function season() {
             rang = 'абсолютный чемпион'
          }
 
+         function getCycleRoman(number) {
+            if (number === 22) return null // пропускаем
+            const cycle = ['I', 'II', 'III']
+            return cycle[(number - 1) % 3]
+         }
+         let rim
+         rim = getCycleRoman(number)
+
 
 
          const name = `с${actSeason} ${rang}`
@@ -5698,7 +5706,7 @@ function season() {
 
          document.querySelector('[data-tituls]').insertAdjacentHTML('beforeend', `
                   <div data-season="${actSeason}">
-                     <div data-titul="${color}">${name}</div>
+                     <div data-titul="${color}">${name} ${rim}</div>
                    </div>
                `)
 
@@ -5814,12 +5822,21 @@ function polRewardRang() {
    }
 
 
+   function getCycleRoman(number) {
+      if (number === 22) return null // пропускаем
+      const cycle = ['I', 'II', 'III']
+      return cycle[(number - 1) % 3]
+   }
+   let rim
+   rim = getCycleRoman(number)
+
+
 
    const name = `с${actSeason} ${rang}`
 
    document.querySelector('[data-polreward-point]._rang').setAttribute('data-polreward-point', color)
    document.querySelector('[data-polreward-point]._rang').innerHTML = `
-         ${name}
+         ${name} ${rim}
       `
 
 
