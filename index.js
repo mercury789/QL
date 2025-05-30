@@ -37,7 +37,7 @@ function log(info) {
 
 }
 
-function exportSave() {
+function exportSave(barData, barData2, barData3) {
 
    const base = get('base');
    const stat = get('stat');
@@ -393,14 +393,12 @@ if (document.querySelector('[data-log-body]')) {
    document.querySelector('[data-log-body]').innerHTML = ''
 }
 
-
 if (get('barData') && JSON.parse(get('barData')).length !== 0) {
    document.querySelector('[data-start]')?.remove();
 
    var barData = JSON.parse(get('barData'));
    log(`barData: ${JSON.stringify(barData)}`);
    log(`barData length: ${barData.length}`);
-
 
 
    let endObj = barData[barData.length - 1];
@@ -447,12 +445,11 @@ if (get('barData') && JSON.parse(get('barData')).length !== 0) {
       }
 
       if (barData.length === 3 && barData[0].date === '') {
-         log('далён пустой первый бар');
+         log('удалён пустой первый бар');
          barData.shift();
       }
 
 
-      exportSave()
 
       if (barData.length === 37) {
          barData.shift()
@@ -600,6 +597,14 @@ if (get('barData3') && JSON.parse(get('barData3')).length !== 0) {
 
          log('barData3.shift()')
       }
+
+      exportSave(barData, barData2, barData3)
+
+      // console.log(`
+      //    exportSave(${barData}, ${barData2}, ${barData3})
+      //    `);
+      
+
 
       set('barData3', JSON.stringify(barData3));
    }
@@ -845,7 +850,7 @@ document.addEventListener('click', (event) => {
    const targ = event.target
 
    if (targ.closest('[data-export]')) {
-      exportSave()
+      exportSave(barData, barData2, barData3)
       // targ.style.background = '#1aa3c9;'
    }
 
