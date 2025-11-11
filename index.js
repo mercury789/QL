@@ -1130,38 +1130,35 @@ document.addEventListener('click', (event) => {
 
                if (num) {
 
-                  if (document.querySelector('[data-money-start]')) {
 
-                     document.querySelector('[data-money-start]').remove()
+                  const asset = document.querySelectorAll('[data-asset]')
+                  asset.forEach((asset) => {
+                     if (asset.querySelector('[data-asset-text]').innerText === text) {
+                        const newAssetNum = Number(asset.querySelector('[data-asset-num]').innerText) + inputValue
+                        asset.querySelector('[data-asset-num]').innerText = newAssetNum.toFixed(2)
+                        asset.querySelector('[data-asset-usdt]').innerText = (newAssetNum * 0.024).toFixed(2)
 
-                     let profitSum = Number(document.querySelector('[data-money-profit]').innerText)
+                     }
+                  })
 
-                     barData2.push({ x: Date.now() - 86400000, o: profitSum, h: profitSum, l: profitSum, c: profitSum, date: '' })
+                  // 
 
-                     barData2.push({ x: Date.now(), o: profitSum, h: profitSum, l: profitSum, c: profitSum, date: date })
+                  let sum = 0
 
-                     document.querySelector('[data-money-neg-add]').classList.remove('_block')
-                     document.querySelector('[data-money-pos-add]').style = 'bottom: 105px; right: 10px;'
-                     document.querySelector('[data-money-neg-add]').style = 'bottom: 60px; right: 10px;'
+                  asset.forEach((asset) => {
+                     sum = sum + Number(asset.querySelector('[data-asset-num]').innerText)
 
-                     const asset = document.querySelectorAll('[data-asset]')
-                     asset.forEach((asset) => {
-                        if (asset.querySelector('[data-asset-text]').innerText === text) {
-                           const newAssetNum = Number(asset.querySelector('[data-asset-num]').innerText) + inputValue
-                           asset.querySelector('[data-asset-num]').innerText = newAssetNum.toFixed(2)
-                           asset.querySelector('[data-asset-usdt]').innerText = (newAssetNum * 0.024).toFixed(2)
+                     // const newAssetNum = Number(asset.querySelector('[data-asset-num]').innerText) + inputValue
+                     // asset.querySelector('[data-asset-num]').innerText = newAssetNum.toFixed(2)
+                     // asset.querySelector('[data-asset-usdt]').innerText = (newAssetNum * 0.024).toFixed(2)
 
-                        }
-                     })
+                  })
 
-                     set('barData2', JSON.stringify(barData2))
-                     chart2.update()
-                     const money = document.querySelector('[data-money]').innerHTML
-                     set('money', money)
-                     set('assets', document.querySelector('[data-assets]').innerHTML)
+                  document.querySelector('[data-statmoney-num]').innerText = sum.toFixed(2)
+                  document.querySelector('[data-statmoney-usdt]').innerText = (sum * 0.024).toFixed(2)
 
 
-                  }
+
 
                }
             }
@@ -1297,7 +1294,9 @@ document.addEventListener('click', (event) => {
             input.remove()
 
             document.querySelector('[data-money-pos-add]').style.display = 'flex'
-            document.querySelector('[data-money-neg-add]').style.display = 'flex'
+            if (!document.querySelector('[data-money-start]')) {
+               document.querySelector('[data-money-neg-add]').style.display = 'flex'
+            }
             document.querySelector('[data-task-shadow]').classList.remove('_active')
             document.querySelector('[data-asset-text]._active').classList.remove('_active')
             document.querySelector('[data-dropdown]') && document.querySelector('[data-dropdown]').remove()
@@ -2200,7 +2199,37 @@ document.addEventListener('click', (event) => {
    if (targ.closest('[data-start]')) {
 
 
+      const pad = (n) => String(n).padStart(2, '0');
+      const today = new Date();
+      const date = `${pad(today.getDate())}${pad(today.getMonth() + 1)}${today.getFullYear()}`;
+
+      let checkDate = barData2.find(obj => obj.date === date)
+
+
+
+      let profitSum = Number(document.querySelector('[data-statmoney-num]').innerText)
+
+      barData2.push({ x: Date.now() - 86400000, o: profitSum, h: profitSum, l: profitSum, c: profitSum, date: '' })
+      barData2.push({ x: Date.now(), o: profitSum, h: profitSum, l: profitSum, c: profitSum, date: date })
+
+      document.querySelector('[data-money-neg-add]').classList.remove('_block')
+      document.querySelector('[data-money-pos-add]').style = 'bottom: 105px; right: 10px;'
+      document.querySelector('[data-money-neg-add]').style = 'bottom: 60px; right: 10px;'
+
+      set('barData2', JSON.stringify(barData2))
+      chart2.update()
+      const money = document.querySelector('[data-money]').innerHTML
+      set('money', money)
+      set('assets', document.querySelector('[data-assets]').innerHTML)
+
+
+
+      // old money
+
+
       targ.remove()
+
+      document.querySelector('[data-money-start]').remove()
 
       let sum = 0;
       document.querySelectorAll('[data-span]').forEach(div => {
@@ -2226,9 +2255,9 @@ document.addEventListener('click', (event) => {
       `)
 
 
-      const pad = (n) => String(n).padStart(2, '0');
-      const today = new Date();
-      const date = `${pad(today.getDate())}${pad(today.getMonth() + 1)}${today.getFullYear()}`;
+      // const pad = (n) => String(n).padStart(2, '0');
+      // const today = new Date();
+      // const date = `${pad(today.getDate())}${pad(today.getMonth() + 1)}${today.getFullYear()}`;
 
 
       barData.push({ x: Date.now() - 86400000, o: procent, h: procent, l: procent, c: procent, date: '' })
@@ -3743,6 +3772,17 @@ document.addEventListener('click', (event) => {
 
       const targAsset = targ.closest('[data-asset]')
       const taskShadow = document.querySelector('[data-task-shadow]')
+
+      const targAssetText = targAsset.querySelector('[data-asset-text]').innerText
+
+      const moneyCategorieAll = document.querySelectorAll('[data-money-categorie]')
+      moneyCategorieAll.forEach((moneyCategorie) => {
+
+         if (moneyCategorie.innerText === targAssetText) {
+            moneyCategorie.remove()
+         }
+      })
+
 
       targAsset.remove()
       taskShadow.classList.remove('_active')
