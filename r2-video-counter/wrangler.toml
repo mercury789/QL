@@ -1,0 +1,9 @@
+name = "r2-video-counter"
+main = "index.js"
+compatibility_date = "2024-01-01"
+type = "module"
+
+[[r2_buckets]]
+binding = "R2"                      # имя переменной в коде
+bucket_name = "ql-media"   # имя твоего бакета
+preview_bucket_name = "ql-media"

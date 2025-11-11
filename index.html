@@ -1,0 +1,898 @@
+<html lang="en">
+
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1">
+
+   <title>Quality Life</title>
+   <script src="lib/luxon.js"></script>
+   <script src="lib/chart.umd.js"></script>
+   <script src="lib/chartjs-adapter-luxon.js"></script>
+   <script src="chartjs-chart-financial.js" type="text/javascript"></script>
+   <link rel="stylesheet" type="text/css" href="style.css">
+
+   <link rel="icon" href="favicon.webp">
+
+   <link rel="manifest" href="manifest.json">
+
+
+</head>
+
+<body style="padding-top: 0px;">
+
+
+   <!-- <div data-test>
+      timer 3 sec
+   </div> -->
+
+
+   <div data-task-shadow>
+   </div>
+
+   <div data-shadow>
+   </div>
+
+   <div class="after"></div>
+
+
+   <video data-video style="opacity: 0; pointer-events: none;">
+      <source src="bg.mp4" type="video/mp4">
+   </video>
+
+
+   <div data-ql>
+
+      <div data-back></div>
+
+      <div class="top">
+
+         <div data-stat></div>
+
+         <div>
+            <div data-chart style="max-width: 100%;">
+               <canvas id="chart"></canvas>
+
+            </div>
+         </div>
+
+      </div>
+
+      <div data-body></div>
+
+      <div>⠀</div>
+      <div>⠀</div>
+
+      <button data-pos-add>+</button>
+      <div>⠀</div>
+      <button data-neg-add>-</button>
+
+   </div>
+
+   <div data-footer class="footer">
+      <div data-footer-name="note" class="footer__button _active">
+         <!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+         <svg fill="#ffffff" height="20px" width="20px" version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg"
+            xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 321.094 321.094" xml:space="preserve"
+            stroke="#ffffff">
+            <g id="SVGRepo_bgCarrier" stroke-width="0" />
+            <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round" />
+            <g id="SVGRepo_iconCarrier">
+               <g>
+                  <g>
+                     <g>
+                        <path
+                           d="M277.54,19.907h-63.18V7.5c0-4.142-3.357-7.5-7.5-7.5h-92.625c-4.143,0-7.5,3.358-7.5,7.5v12.407h-63.18 c-4.143,0-7.5,3.358-7.5,7.5v286.187c0,4.142,3.357,7.5,7.5,7.5h233.984c4.143,0,7.5-3.358,7.5-7.5V27.407 C285.04,23.265,281.683,19.907,277.54,19.907z M121.735,15h77.625v24h-77.625V15z M270.041,306.094h-0.001H51.056V34.907h55.68 V46.5c0,4.142,3.357,7.5,7.5,7.5h92.625c4.143,0,7.5-3.358,7.5-7.5V34.907h55.68V306.094z" />
+                        <path
+                           d="M109.397,86.5h-35c-4.143,0-7.5,3.358-7.5,7.5v35c0,4.142,3.357,7.5,7.5,7.5h35c4.143,0,7.5-3.358,7.5-7.5V94 C116.897,89.858,113.54,86.5,109.397,86.5z M101.897,121.5h-20v-20h20V121.5z" />
+                        <path
+                           d="M126.897,94v35c0,4.142,3.357,7.5,7.5,7.5h112.301c4.143,0,7.5-3.358,7.5-7.5V94c0-4.142-3.357-7.5-7.5-7.5H134.397 C130.255,86.5,126.897,89.858,126.897,94z M141.897,101.5h97.301v20h-97.301V101.5z" />
+                        <path
+                           d="M109.397,155.5h-35c-4.143,0-7.5,3.358-7.5,7.5v35c0,4.142,3.357,7.5,7.5,7.5h35c4.143,0,7.5-3.358,7.5-7.5v-35 C116.897,158.858,113.54,155.5,109.397,155.5z M101.897,190.5h-20v-20h20V190.5z" />
+                        <path
+                           d="M246.698,155.5H134.397c-4.143,0-7.5,3.358-7.5,7.5v35c0,4.142,3.357,7.5,7.5,7.5h112.301c4.143,0,7.5-3.358,7.5-7.5v-35 C254.198,158.858,250.841,155.5,246.698,155.5z M239.198,190.5h-97.301v-20h97.301V190.5z" />
+                        <path
+                           d="M109.397,224.5h-35c-4.143,0-7.5,3.358-7.5,7.5v35c0,4.142,3.357,7.5,7.5,7.5h35c4.143,0,7.5-3.358,7.5-7.5v-35 C116.897,227.858,113.54,224.5,109.397,224.5z M101.897,259.5h-20v-20h20V259.5z" />
+                        <path
+                           d="M246.698,224.5H134.397c-4.143,0-7.5,3.358-7.5,7.5v35c0,4.142,3.357,7.5,7.5,7.5h112.301c4.143,0,7.5-3.358,7.5-7.5v-35 C254.198,227.858,250.841,224.5,246.698,224.5z M239.198,259.5h-97.301v-20h97.301V259.5z" />
+                     </g>
+                  </g>
+               </g>
+            </g>
+         </svg>
+      </div>
+      <div data-footer-name="ql" class="footer__button">
+         <!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+         <svg version="1.0" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+            width="20px" height="20px" viewBox="0 0 64 64" enable-background="new 0 0 64 64" xml:space="preserve"
+            fill="#000000">
+            <g id="SVGRepo_bgCarrier" stroke-width="0" />
+            <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round" />
+            <g id="SVGRepo_iconCarrier">
+               <path fill="#ffffff"
+                  d="M32,0C14.327,0,0,14.327,0,32s14.327,32,32,32s32-14.327,32-32S49.673,0,32,0z M49.972,31 c-0.138-5.582-1.414-10.878-3.613-15.667c2.652-1.022,5.169-2.317,7.515-3.854c4.824,5.14,7.854,11.976,8.102,19.521H49.972z M33.333,61.966c-0.11,0.005-0.222,0.005-0.333,0.009V50.035c3.324,0.087,6.547,0.581,9.605,1.47 C40.184,55.541,37.029,59.084,33.333,61.966z M44.549,52.141c2.283,0.801,4.462,1.817,6.523,3.018 c-3.991,3.29-8.849,5.563-14.178,6.438C39.902,58.861,42.484,55.672,44.549,52.141z M21.394,51.505 c3.059-0.89,6.282-1.383,9.606-1.47v11.939c-0.111-0.004-0.223-0.004-0.333-0.009C26.97,59.084,23.816,55.541,21.394,51.505z M27.105,61.596c-5.329-0.874-10.187-3.147-14.178-6.438c2.062-1.2,4.24-2.217,6.523-3.017 C21.515,55.672,24.098,58.861,27.105,61.596z M2.025,31c0.248-7.545,3.277-14.381,8.102-19.521c2.346,1.536,4.862,2.831,7.515,3.854 C15.442,20.122,14.166,25.418,14.028,31H2.025z M43.57,14.196c-3.345,1.069-6.894,1.67-10.57,1.766V2.025 c0.111,0.004,0.223,0.004,0.333,0.009C37.541,5.314,41.047,9.453,43.57,14.196z M36.895,2.404 c5.944,0.976,11.298,3.696,15.521,7.622c-2.176,1.391-4.496,2.57-6.944,3.499C43.278,9.326,40.369,5.562,36.895,2.404z M31,2.025 v13.937c-3.677-0.096-7.226-0.696-10.57-1.766c2.523-4.743,6.029-8.882,10.237-12.162C30.777,2.029,30.889,2.029,31,2.025z M18.529,13.525c-2.448-0.929-4.769-2.108-6.944-3.499c4.223-3.926,9.576-6.646,15.521-7.622 C23.631,5.562,20.722,9.326,18.529,13.525z M19.532,16.009c3.622,1.189,7.472,1.873,11.468,1.972V31H16.031 C16.17,25.654,17.403,20.584,19.532,16.009z M31,33v15.036c-3.684,0.092-7.245,0.665-10.615,1.689 C17.732,44.712,16.188,39.029,16.031,33H31z M33,48.036V33h14.969c-0.156,6.029-1.701,11.712-4.354,16.726 C40.245,48.701,36.684,48.128,33,48.036z M33,31V17.98c3.996-0.099,7.846-0.782,11.468-1.972c2.129,4.575,3.362,9.646,3.501,14.991 H33z M2.025,33h12.003c0.154,6.253,1.74,12.146,4.447,17.369c-2.496,0.899-4.871,2.044-7.109,3.396 C5.827,48.513,2.294,41.172,2.025,33z M52.634,53.766c-2.238-1.353-4.613-2.497-7.109-3.396c2.707-5.224,4.293-11.116,4.447-17.369 h12.003C61.706,41.172,58.173,48.513,52.634,53.766z" />
+            </g>
+         </svg>
+      </div>
+      <div data-footer-name="mn" class="footer__button">
+         <?xml version="1.0" encoding="utf-8"?><svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg"
+            xmlns:xlink="http://www.w3.org/1999/xlink" width="20px" height="20px" x="0px" y="0px"
+            viewBox="0 0 122.88 101.33" style="enable-background:new 0 0 122.88 101.33" xml:space="preserve">
+            <style type="text/css">
+               .st0 {
+                  fill-rule: evenodd;
+                  clip-rule: evenodd;
+               }
+            </style>
+            <g>
+               <path class="st0"
+                  d="M90.62,33.32h18.4v-2.79c-2.88-10.73-10.2-10.66-19.25-10.57c-1.49,0.02-2.84,0.03-2.92,0.03H18.07 c-1.58,0-2.86-1.28-2.86-2.86c0-1.58,1.28-2.86,2.86-2.86h68.78c2.03,0,2.46,0,2.87-0.01c7.74-0.08,14.5-0.15,19.3,4.38v-1.31 c0-3.2-1.31-6.1-3.42-8.21c-2.11-2.11-5.02-3.42-8.21-3.42H17.34c-3.2,0-6.1,1.31-8.21,3.42c-2.11,2.11-3.42,5.02-3.42,8.21v66.64 c0,3.2,1.31,6.1,3.42,8.21c2.11,2.11,5.02,3.42,8.21,3.42h80.04c3.2,0,6.1-1.31,8.21-3.42c2.11-2.11,3.42-5.02,3.42-8.21v-9.46 h-18.4c-5.55,0-10.6-2.27-14.25-5.92c-3.65-3.65-5.92-8.7-5.92-14.25v-0.87c0-5.55,2.27-10.6,5.92-14.25 C80.02,35.59,85.06,33.32,90.62,33.32L90.62,33.32z M114.73,33.43c2.07,0.31,3.92,1.29,5.33,2.71c1.74,1.74,2.81,4.14,2.81,6.78 v21.6c0,2.76-1.12,5.26-2.93,7.07c-1.39,1.39-3.2,2.38-5.21,2.76v9.63c0,4.77-1.95,9.11-5.09,12.25 c-3.14,3.14-7.48,5.09-12.25,5.09H17.34c-4.77,0-9.11-1.95-12.25-5.09C1.95,93.1,0,88.76,0,83.99V17.34 c0-4.77,1.95-9.11,5.09-12.25C8.23,1.95,12.57,0,17.34,0h80.04c4.77,0,9.11,1.95,12.25,5.09c3.14,3.14,5.09,7.48,5.09,12.25V33.43 L114.73,33.43z M88.14,46.11c4.05,0,7.33,3.28,7.33,7.33c0,4.05-3.28,7.33-7.33,7.33c-4.05,0-7.33-3.28-7.33-7.33 C80.81,49.39,84.09,46.11,88.14,46.11L88.14,46.11z" />
+            </g>
+         </svg>
+      </div>
+   </div>
+
+   <div data-burger>
+      <button data-export>экспорт</button>
+      <input type="file" id="fileInput" accept=".txt">
+      <button data-clear>ресет фулл</button>
+      <button data-money-clear>ресет финанс</button>
+      <button data-note-clear>ресет заметки</button>
+      <button data-start>начать</button>
+      <button data-money-start>начать финанс</button>
+      <button style="display: flex; gap: 5px;" data-turn="edit" class="_active">
+         <div>эдиты</div>
+         <div data-turn-state>вкл</div>
+      </button>
+      <!-- <button style="display: flex; gap: 5px;" data-turn="notification" class="_active">
+         <div>уведы</div>
+         <div data-turn-state>вкл</div>
+      </button> -->
+      <button data-view-tabs style="display: flex; gap: 5px;">
+         <div data-view-name>табы</div>
+         <div data-view-turn>выкл</div>
+      </button>
+
+      <button data-log-button>логи</button>
+      <button data-about-button>о проге</button>
+
+
+      <br />
+      <br />
+      <br />
+
+
+
+      <div data-log>
+
+         <div data-log-cross> </div>
+
+         <!-- <div data-burger2-shadow></div> -->
+
+         <div data-log-name>
+            логи
+         </div>
+
+         <div data-log-body>
+
+
+
+
+         </div>
+
+      </div>
+
+      <div data-about>
+
+         <div data-about-cross> </div>
+
+         <!-- <div data-burger2-shadow></div> -->
+
+         <div data-about-name>
+            о проге
+         </div>
+
+         <div data-about-body>
+
+            <div data-about-point>любые вопросы в тг: <a data-about-link href="https://t.me/mercury789">mercury789</a></div>
+            
+
+         </div>
+
+      </div>
+       
+   </div>
+
+   <div data-burger-2>
+
+
+      <div data-polreward>
+
+         <button data-polreward-cross> </button>
+
+         <div data-burger2-shadow></div>
+
+         <div data-polreward-name>
+            потенциальные награды
+         </div>
+
+         <div data-polreward-body>
+            <div data-polreward-point="fiolet" class="_absolute">
+               абсолют
+            </div>
+            <div data-polreward-point="blue" class="_pol-absolute">
+               полу-абсолют   
+            </div>
+            <div data-polreward-point class="_rang">
+               c1 ранг
+            </div>
+
+         </div>
+
+      </div>   
+
+      <div data-politic>
+
+         <button data-politic-cross> </button>
+
+         <div data-burger2-shadow></div>
+
+         <div data-politic-name>
+            политика
+         </div>
+
+         <div data-politic-body>
+            <div data-politic-point>
+               правило
+            </div>
+         </div>
+
+      </div>
+
+      <div data-collection>
+
+         <button data-collection-cross> </button>
+
+         <div data-burger2-shadow></div>
+
+         <div data-collection-name>
+            коллекция
+         </div>
+
+         <div data-collection-body>
+            <div data-collection-point>
+               достижение
+            </div>
+
+         </div>
+
+      </div>
+
+
+
+      <div data-season-shadow>
+      </div>
+      <div data-tituls>
+
+
+      </div>
+
+      <div data-season-get style="display: none;">
+         получить титул
+      </div>
+      <br />
+      <div data-season-clear style="display: none;">
+         завершить сезон
+      </div>
+      <br />
+
+      <div data-dinam-tituls>
+
+         <div data-politic-button>политика</div>
+         <div data-polreward-button>награды</div>
+         <div data-collection-button>коллекция</div>
+
+         <div data-dinam-interval>интервал наград 7д</div>
+
+         <div data-dinam-titul>
+            <div data-dinam-titul-info>
+               <div data-dinam-titul-name>без игр</div>
+               <span>-</span>
+               <div style="display: flex;">
+                  <div data-dinam-titul-num>0</div>
+                  <span>д</span>
+               </div>
+            </div>
+            <div data-dinam-titul-rank>
+               <img data-dinam-rank="0" src="icon/0.png">
+            </div>
+         </div>
+         <div data-dinam-titul>
+            <div data-dinam-titul-info>
+               <div data-dinam-titul-name>без сахара</div>
+               <span>-</span>
+               <div style="display: flex;">
+                  <div data-dinam-titul-num>0</div>
+                  <span>д</span>
+               </div>
+            </div>
+            <div data-dinam-titul-rank>
+               <img data-dinam-rank="0" src="icon/0.png">
+            </div>
+         </div>
+         <div data-dinam-titul>
+            <div data-dinam-titul-info>
+               <div data-dinam-titul-name>без выгораний</div>
+               <span>-</span>
+               <div style="display: flex;">
+                  <div data-dinam-titul-num>0</div>
+                  <span>д</span>
+               </div>
+            </div>
+            <div data-dinam-titul-rank>
+               <img data-dinam-rank="0" src="icon/0.png">
+            </div>
+         </div>
+         <div data-dinam-titul>
+            <div data-dinam-titul-info>
+               <div data-dinam-titul-name>без срывов фапа</div>
+               <span>-</span>
+               <div style="display: flex;">
+                  <div data-dinam-titul-num>0</div>
+                  <span>д</span>
+               </div>
+            </div>
+            <div data-dinam-titul-rank>
+               <img data-dinam-rank="0" src="icon/0.png">
+            </div>
+         </div>
+         <div data-dinam-titul>
+            <div data-dinam-titul-info>
+               <div data-dinam-titul-name>без лишних трат</div>
+               <span>-</span>
+               <div style="display: flex;">
+                  <div data-dinam-titul-num>0</div>
+                  <span>д</span>
+               </div>
+            </div>
+            <div data-dinam-titul-rank>
+               <img data-dinam-rank="0" src="icon/0.png">
+            </div>
+         </div>
+      </div>
+
+      <br />
+
+      <div class="seson-end" style="display: flex; gap: 5px;">
+         <div style="display: flex; gap: 5px;">
+            <div>до конца</div>
+            <div style="display: flex;">
+               <div>c</div>
+               <div data-actual-season>1</div>
+            </div>
+         </div>
+         <div>-</div>
+         <div style="display: flex;">
+            <div data-season-day data-season-date="1442025">30</div>
+            <div>д</div>
+         </div>
+      </div>
+   </div>
+
+
+   <div data-mn>
+
+      <div data-money-stat></div>
+
+      <div>
+         <div data-chart-2 style="max-width: 100%;">
+            <canvas id="chart2"></canvas>
+
+         </div>
+      </div>
+
+      <div data-money-tabs>
+         <div data-money-tab="transactions" class="_active">транзакции</div>
+         <div data-money-tab="assets">активы</div>
+      </div>
+
+      <div data-money class="_active">
+
+      </div>
+
+      <div data-assets>
+         <div data-asset>
+            <div data-asset-main>
+               <div data-asset-text>наличные</div>
+               <div data-asset-num>0.00</div>
+            </div>
+            <div data-asset-usdt>0.00</div>
+         </div>
+         <div data-asset>
+            <div data-asset-main>
+               <div data-asset-text>крипта</div>
+               <div data-asset-num>0.00</div>
+            </div>
+            <div data-asset-usdt>0.00</div>
+         </div>
+         <div data-asset>
+            <div data-asset-main>
+               <div data-asset-text>карта</div>
+               <div data-asset-num>0.00</div>
+            </div>
+            <div data-asset-usdt>0.00</div>
+         </div>
+      </div>
+
+      <button data-money-pos-add>+</button>
+      <button data-money-neg-add>-</button>
+
+      <div data-money-categories style="bottom: 60px; right: 10px;">
+         <div data-money-categorie>наличные</div>
+         <div data-money-categorie>крипта</div>
+         <div data-money-categorie>карта</div>
+      </div>
+
+   </div>
+
+   <div data-note>
+
+      <div class="top">
+
+         <div data-note-stat></div>
+
+         <div>
+            <div data-chart style="max-width: 100%;">
+               <canvas id="chart3"></canvas>
+
+            </div>
+         </div>
+
+
+      </div>
+
+      <div data-note-body>
+
+         <div data-task-tabs>
+            <div data-task-tab class="_active">домашний</div>
+            <div data-task-tab>работа</div>
+            <div data-task-tab>выходной</div>
+         </div>
+
+         <div data-task-main>
+            <div data-task-body="домашний" class="_active">
+
+               <div data-shell class="_water">
+                  <div data-mark>
+                     <div data-task-decor style="width: 0%; transition: width 0.3s ease 0s;"></div>
+                     <div class="mark-text">
+                        <div data-text>вода</div>
+                        <div data-reward>1</div>
+                     </div>
+                     <div data-info>
+                        <div data-info-time>
+
+                        </div>
+                        <div data-data>
+                           <div data-num>0</div>
+                           <div>/</div>
+                           <div data-max>14</div>
+                        </div>
+                     </div>
+                  </div>
+                  <div data-right>
+                     <div data-date>0.00</div>
+                     <div class="icon"><img data-mark-rang="0" src="icon/0.png"></div>
+                  </div>
+               </div>
+               <div data-shell>
+                  <div data-mark>
+                     <div data-task-decor style="width: 0%; transition: width 0.3s ease 0s;"></div>
+                     <div class="mark-text">
+                        <div data-text>компресс</div>
+                        <div data-reward>1</div>
+                     </div>
+                     <div data-info>
+                        <div data-info-time>
+
+                        </div>
+                        <div data-data>
+                           <div data-num>0</div>
+                           <div>/</div>
+                           <div data-max>1</div>
+                        </div>
+                     </div>
+                  </div>
+                  <div data-right>
+                     <div data-date>0.20</div>
+                     <div class="icon"><img data-mark-rang="0" src="icon/0.png"></div>
+                  </div>
+               </div>
+               <div data-shell>
+                  <div data-mark>
+                     <div data-task-decor style="width: 0%; transition: width 0.3s ease 0s;"></div>
+                     <div class="mark-text">
+                        <div data-text>окно завтрак рыб.ж</div>
+                        <div data-reward>1</div>
+                     </div>
+                     <div data-info>
+                        <div data-info-time>
+
+                        </div>
+                        <div data-data>
+                           <div data-num>0</div>
+                           <div>/</div>
+                           <div data-max>1</div>
+                        </div>
+                     </div>
+                  </div>
+                  <div data-right>
+                     <div data-date>1.00</div>
+                     <div class="icon"><img data-mark-rang="0" src="icon/0.png"></div>
+                  </div>
+               </div>
+               <div data-shell>
+                  <div data-mark>
+                     <div data-task-decor style="width: 0%; transition: width 0.3s ease 0s;"></div>
+                     <div class="mark-text">
+                        <div data-text>палец</div>
+                        <div data-reward>1</div>
+                     </div>
+                     <div data-info>
+                        <div data-info-time>
+
+                        </div>
+                        <div data-data>
+                           <div data-num>0</div>
+                           <div>/</div>
+                           <div data-max>1</div>
+                        </div>
+                     </div>
+                  </div>
+                  <div data-right>
+                     <div data-date>1.30</div>
+                     <div class="icon"><img data-mark-rang="0" src="icon/0.png"></div>
+                  </div>
+               </div>
+
+               <div data-shell data-note-categorie>
+                  <div data-mark>
+                     <div data-task-decor style="width: 0%; transition: width 0.3s ease 0s;"></div>
+                     <div class="mark-text">
+                        <div data-text>крипта</div>
+                        <div data-reward>2</div>
+                     </div>
+                     <div data-info>
+                        <div data-info-time>
+                           <div>1</div>
+                           <span>ч</span>
+                        </div>
+                        <div data-data>
+                           <div data-num>0</div>
+                           <div>/</div>
+                           <div data-max>1</div>
+                        </div>
+                     </div>
+                  </div>
+                  <div data-right>
+                     <div data-date>2.00</div>
+                     <div class="icon"><img data-mark-rang="0" src="icon/0.png"></div>
+                  </div>
+               </div>
+               <div data-shell data-note-categorie>
+                  <div data-mark>
+                     <div data-task-decor style="width: 0%; transition: width 0.3s ease 0s;"></div>
+                     <div class="mark-text">
+                        <div data-text>апгрейды</div>
+                        <div data-reward>2</div>
+                     </div>
+                     <div data-info>
+                        <div data-info-time>
+                           <div>1</div>
+                           <span>ч</span>
+                        </div>
+                        <div data-data>
+                           <div data-num>0</div>
+                           <div>/</div>
+                           <div data-max>1</div>
+                        </div>
+                     </div>
+                  </div>
+                  <div data-right>
+                     <div data-date>3.00</div>
+                     <div class="icon"><img data-mark-rang="0" src="icon/0.png"></div>
+                  </div>
+               </div>
+               <div data-shell>
+                  <div data-mark>
+                     <div data-task-decor style="width: 0%; transition: width 0.3s ease 0s;"></div>
+                     <div class="mark-text">
+                        <div data-text>окно обед</div>
+                        <div data-reward>1</div>
+                     </div>
+                     <div data-info>
+                        <div data-info-time>
+
+                        </div>
+                        <div data-data>
+                           <div data-num>0</div>
+                           <div>/</div>
+                           <div data-max>1</div>
+                        </div>
+                     </div>
+                  </div>
+                  <div data-right>
+                     <div data-date>4.00</div>
+                     <div class="icon"><img data-mark-rang="0" src="icon/0.png"></div>
+                  </div>
+               </div>
+               <div data-shell>
+                  <div data-mark>
+                     <div data-task-decor style="width: 0%; transition: width 0.3s ease 0s;"></div>
+                     <div class="mark-text">
+                        <div class="mark-text">
+                           <div data-text>компресс</div>
+                           <div data-reward>1</div>
+                        </div>
+                     </div>
+                     <div data-info>
+                        <div data-info-time>
+
+                        </div>
+                        <div data-data>
+                           <div data-num>0</div>
+                           <div>/</div>
+                           <div data-max>1</div>
+                        </div>
+                     </div>
+                  </div>
+                  <div data-right>
+                     <div data-date>4.30</div>
+                     <div class="icon"><img data-mark-rang="0" src="icon/0.png"></div>
+                  </div>
+               </div>
+               <div data-shell data-note-categorie>
+                  <div data-mark>
+                     <div data-task-decor style="width: 0%; transition: width 0.3s ease 0s;"></div>
+                     <div class="mark-text">
+                        <div data-text>здоровье</div>
+                        <div data-reward>2</div>
+                     </div>
+                     <div data-info>
+                        <div data-info-time>
+                           <div>1</div>
+                           <span>ч</span>
+                        </div>
+                        <div data-data>
+                           <div data-num>0</div>
+                           <div>/</div>
+                           <div data-max>1</div>
+                        </div>
+                     </div>
+                  </div>
+                  <div data-right>
+                     <div data-date>5.00</div>
+                     <div class="icon"><img data-mark-rang="0" src="icon/0.png"></div>
+                  </div>
+               </div>
+               <div data-shell>
+                  <div data-mark>
+                     <div data-task-decor style="width: 0%; transition: width 0.3s ease 0s;"></div>
+                     <div class="mark-text">
+                        <div data-text>покупки накопл</div>
+                        <div data-reward>1</div>
+                     </div>
+                     <div data-info>
+                        <div data-info-time>
+
+                        </div>
+                        <div data-data>
+                           <div data-num>0</div>
+                           <div>/</div>
+                           <div data-max>1</div>
+                        </div>
+                     </div>
+                  </div>
+                  <div data-right>
+                     <div data-date>6.00</div>
+                     <div class="icon"><img data-mark-rang="0" src="icon/0.png"></div>
+                  </div>
+               </div>
+               <div data-shell>
+                  <div data-mark>
+                     <div data-task-decor style="width: 0%; transition: width 0.3s ease 0s;"></div>
+                     <div class="mark-text">
+                        <div data-text>окно ужин рыб.ж</div>
+                        <div data-reward>1</div>
+                     </div>
+                     <div data-info>
+                        <div data-info-time>
+
+                        </div>
+                        <div data-data>
+                           <div data-num>0</div>
+                           <div>/</div>
+                           <div data-max>1</div>
+                        </div>
+                     </div>
+                  </div>
+                  <div data-right>
+                     <div data-date>7.00</div>
+                     <div class="icon"><img data-mark-rang="0" src="icon/0.png"></div>
+                  </div>
+               </div>
+               <div data-shell>
+                  <div data-mark>
+                     <div data-task-decor style="width: 0%; transition: width 0.3s ease 0s;"></div>
+                     <div class="mark-text">
+                        <div data-text>зубы</div>
+                        <div data-reward>1</div>
+                     </div>
+                     <div data-info>
+                        <div data-info-time>
+
+                        </div>
+                        <div data-data>
+                           <div data-num>0</div>
+                           <div>/</div>
+                           <div data-max>1</div>
+                        </div>
+                     </div>
+                  </div>
+                  <div data-right>
+                     <div data-date>8.00</div>
+                     <div class="icon"><img data-mark-rang="0" src="icon/0.png"></div>
+                  </div>
+               </div>
+               <div data-shell>
+                  <div data-mark>
+                     <div data-task-decor style="width: 0%; transition: width 0.3s ease 0s;"></div>
+                     <div class="mark-text">
+                        <div data-text>компресс</div>
+                        <div data-reward>1</div>
+                     </div>
+                     <div data-info>
+                        <div data-info-time>
+
+                        </div>
+                        <div data-data>
+                           <div data-num>0</div>
+                           <div>/</div>
+                           <div data-max>1</div>
+                        </div>
+                     </div>
+                  </div>
+                  <div data-right>
+                     <div data-date>8.30</div>
+                     <div class="icon"><img data-mark-rang="0" src="icon/0.png"></div>
+                  </div>
+               </div>
+               <div data-shell>
+                  <div data-mark>
+                     <div data-task-decor style="width: 0%; transition: width 0.3s ease 0s;"></div>
+                     <div class="mark-text">
+                        <div data-text>досуг</div>
+                        <div data-reward>1</div>
+                     </div>
+                     <div data-info>
+                        <div data-info-time>
+
+                        </div>
+                        <div data-data>
+                           <div data-num>0</div>
+                           <div>/</div>
+                           <div data-max>1</div>
+                        </div>
+                     </div>
+                  </div>
+                  <div data-right>
+                     <div data-date>9.00</div>
+                     <div class="icon"><img data-mark-rang="0" src="icon/0.png"></div>
+                  </div>
+               </div>
+
+            </div>
+
+            <div data-task-body="работа">
+               <div data-shell>
+                  <div data-mark>
+                     <div data-task-decor style="width: 0%; transition: width 0.3s ease 0s;"></div>
+                     <div class="mark-text">
+                        <div data-text>вода</div>
+                        <div data-reward>1</div>
+                     </div>
+                     <div data-info>
+                        <div data-info-time>
+
+                        </div>
+                        <div data-data>
+                           <div data-num>0</div>
+                           <div>/</div>
+                           <div data-max>14</div>
+                        </div>
+                     </div>
+                  </div>
+                  <div data-right>
+                     <div data-date>0.00</div>
+                     <div class="icon"><img data-mark-rang="0" src="icon/0.png"></div>
+                  </div>
+               </div>
+            </div>
+
+            <div data-task-body="выходной">
+               <div data-shell>
+                  <div data-mark>
+                     <div data-task-decor style="width: 0%; transition: width 0.3s ease 0s;"></div>
+                     <div class="mark-text">
+                        <div data-text>вода</div>
+                        <div data-reward>1</div>
+                     </div>
+                     <div data-info>
+                        <div data-info-time>
+
+                        </div>
+                        <div data-data>
+                           <div data-num>0</div>
+                           <div>/</div>
+                           <div data-max>14</div>
+                        </div>
+                     </div>
+                  </div>
+                  <div data-right>
+                     <div data-date>0.00</div>
+                     <div class="icon"><img data-mark-rang="0" src="icon/0.png"></div>
+                  </div>
+               </div>
+            </div>
+
+
+            <div>⠀</div>
+
+
+            <button data-end>завершить</button>
+
+            <div>⠀</div>
+
+
+            <br />
+            <br />
+            <br />
+
+            <div>⠀</div>
+
+         </div>
+
+         <div data-lobby>
+            <div data-lobby-top style="display: none;">
+               <div data-lobby-in></div>
+               <button data-lobby-back>
+                  <div><img src="left.png" alt="#"></div>
+               </button>
+               <button data-lobby-add>+</button>
+            </div>
+         </div>
+
+      </div>
+
+
+   </div>
+
+
+   <button data-settings></button>
+
+
+   <script>
+
+      // setTimeout(() => {
+      //    navigator.serviceWorker.ready.then(reg => {
+      //       reg.showNotification("✅ Таймер завершён!")
+      //    })
+      // }, 5000)
+
+   </script>
+
+   <script type="module" src="index.js"></script>
+   <!-- <script type="module" src="sw.js"></script> -->
+
+</body>
+
+</html>
