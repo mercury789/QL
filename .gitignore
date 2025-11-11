@@ -1,6 +1,6 @@
-node_modules/
-package-lock.json
-.env
-.DS_Store
-*.log
-video/
+# node_modules/
+# package-lock.json
+# .env
+# .DS_Store
+# *.log
+# video/
