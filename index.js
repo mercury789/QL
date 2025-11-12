@@ -50,6 +50,7 @@ function exportSave(barData, barData2, barData3) {
    const moneyStat = get('moneyStat');
    const noteStat = get('noteStat');
    const assets = get('assets');
+   const moneyCategories = get('moneyCategories');
    const burger2 = get('burger2');
 
    const pad = (n) => String(n).padStart(2, '0');
@@ -61,7 +62,7 @@ function exportSave(barData, barData2, barData3) {
    const copy = barData;
    const copy2 = barData2;
    const copy3 = barData3;
-   const content = `${JSON.stringify(copy)}@${JSON.stringify(copy2)}@${JSON.stringify(copy3)}@${stat}@${moneyStat}@${noteStat}@${base}@${money}@${noteBody}@${bgRang}@${assets}@${burger2}`;
+   const content = `${JSON.stringify(copy)}@${JSON.stringify(copy2)}@${JSON.stringify(copy3)}@${stat}@${moneyStat}@${noteStat}@${base}@${money}@${noteBody}@${bgRang}@${assets}@${moneyCategories}@${burger2}`;
    navigator.clipboard.writeText(content);
 
 
@@ -541,6 +542,9 @@ if (get('barData2') && JSON.parse(get('barData2')).length !== 0) {
 
    document.querySelector('[data-money]').innerHTML = get('money');
    document.querySelector('[data-assets]').innerHTML = get('assets');
+   document.querySelector('[data-money-categories]').innerHTML = get('moneyCategories');
+   console.log(get('moneyCategories'));
+   
 
 } else {
    log('barData2 не найден или пуст]');
@@ -1302,6 +1306,7 @@ document.addEventListener('click', (event) => {
             document.querySelector('[data-dropdown]') && document.querySelector('[data-dropdown]').remove()
 
             set('assets', document.querySelector('[data-assets]').innerHTML)
+            set('moneyCategories', document.querySelector('[data-money-categories]').innerHTML)
 
 
          }
@@ -5587,7 +5592,8 @@ fileInput.addEventListener('change', function () {
          parts[8] != 'null' && set('noteBody', parts[8])
          parts[9] != 'null' && set('bgRang', parts[9])
          parts[10] != 'null' && set('assets', parts[10])
-         parts[11] != 'null' && set('burger2', parts[11])
+         parts[11] != 'null' && set('moneyCategories', parts[11])
+         parts[12] != 'null' && set('burger2', parts[12])
 
 
          // set('taskBody', parts[4])
