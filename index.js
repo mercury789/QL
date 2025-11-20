@@ -544,14 +544,14 @@ if (get('barData2') && JSON.parse(get('barData2')).length !== 0) {
    document.querySelector('[data-assets]').innerHTML = get('assets');
    document.querySelector('[data-money-categories]').innerHTML = get('moneyCategories');
    console.log(get('moneyCategories'));
-   
+
 
 } else {
    log('barData2 не найден или пуст]');
    var barData2 = [];
    document.querySelector('[data-money-neg-add]').classList.add('_block');
    document.querySelector('[data-money-neg-add]').style.display = 'none';
-   document.querySelector('[data-money-pos-add]').style = 'bottom: 60px; right: 10px;';
+   document.querySelector('[data-money-pos-add]').style = 'bottom: 60px; right: 10px; display: none;';
 }
 
 if (get('barData3') && JSON.parse(get('barData3')).length !== 0) {
@@ -974,6 +974,14 @@ document.addEventListener('click', (event) => {
    }
 
 
+   if (targ.closest('[data-asset-convert]')) {
+      targ.closest('[data-asset-convert]').insertAdjacentHTML('afterbegin', document.querySelector('[data-money-categories]').outerHTML)
+      document.querySelector('[data-money-categories]').style = 'top: 0px; right: 100%; display: flex; position: absolute;'
+
+      set('assets', document.querySelector('[data-assets]').innerHTML)
+
+   }
+
 
    if (targ.closest('[data-money-categorie]')) {
 
@@ -1088,6 +1096,7 @@ document.addEventListener('click', (event) => {
                            if (asset.querySelector('[data-asset-text]').innerText === text) {
                               const newAssetNum = Number(asset.querySelector('[data-asset-num]').innerText) - inputValue
                               asset.querySelector('[data-asset-num]').innerText = newAssetNum.toFixed(2)
+                              asset.querySelector('[data-asset-usdt]').innerText = (newAssetNum * 0.024).toFixed(2)
                            }
                         })
 
@@ -1195,6 +1204,7 @@ document.addEventListener('click', (event) => {
          input.style = 'position: fixed; bottom: 60px; left: 10px; width: 40px; color: #FCFCFC;'
          input.setAttribute('tabindex', '-1')
 
+
          document.body.appendChild(input)
 
          input.focus()
@@ -1236,12 +1246,19 @@ document.addEventListener('click', (event) => {
                input.remove()
 
                document.querySelector('[data-task-shadow]').classList.remove('_active')
-               document.querySelector('[data-asset-text]').classList.remove('_active')
+               document.querySelector('[data-asset-text]._active') && document.querySelector('[data-asset-text]._active').classList.remove('_active')
                document.querySelector('[data-dropdown]') && document.querySelector('[data-dropdown]').remove()
+
+               // bottom: 60px; right: 10px; display: flex;
+               // document.querySelector('[data-money-categories]').style = 'bottom: 60px; right: 10px; display: flex; display: none;'
+
 
             }
 
          })
+
+         document.querySelector('[data-money-categories]').style = 'bottom: 60px; right: 10px; display: none;'
+
       }
 
       set('assets', document.querySelector('[data-assets]').innerHTML)
@@ -1302,7 +1319,7 @@ document.addEventListener('click', (event) => {
                document.querySelector('[data-money-neg-add]').style.display = 'flex'
             }
             document.querySelector('[data-task-shadow]').classList.remove('_active')
-            document.querySelector('[data-asset-text]._active').classList.remove('_active')
+            document.querySelector('[data-asset-text]._active') && document.querySelector('[data-asset-text]._active').classList.remove('_active')
             document.querySelector('[data-dropdown]') && document.querySelector('[data-dropdown]').remove()
 
             set('assets', document.querySelector('[data-assets]').innerHTML)
@@ -3805,7 +3822,7 @@ document.addEventListener('click', (event) => {
          asset.remove()
       }
       document.querySelector('[data-task-shadow]').classList.remove('_active')
-      document.querySelector('[data-asset-text]._active').classList.remove('_active')
+      document.querySelector('[data-asset-text]._active') && document.querySelector('[data-asset-text]._active').classList.remove('_active')
 
       set('assets', document.querySelector('[data-assets]').innerHTML)
 
@@ -3819,7 +3836,7 @@ document.addEventListener('click', (event) => {
          asset.remove()
       }
       document.querySelector('[data-task-shadow]').classList.remove('_active')
-      document.querySelector('[data-asset-text]._active').classList.remove('_active')
+      document.querySelector('[data-asset-text]._active') && document.querySelector('[data-asset-text]._active').classList.remove('_active')
 
       set('assets', document.querySelector('[data-assets]').innerHTML)
 
@@ -4109,8 +4126,12 @@ document.addEventListener('click', (event) => {
             targText.classList.remove('_active')
             taskShadow.classList.remove('_active')
             document.querySelector('[data-asset-text]._active') && document.querySelector('[data-asset-text]._active').classList.remove('_active')
-            document.querySelector('[data-money-pos-add]').style.display = 'flex'
-            document.querySelector('[data-money-neg-add]').style.display = 'flex'
+
+            if (!document.querySelector('[data-start]')) {
+               document.querySelector('[data-money-pos-add]').style.display = 'flex'
+               document.querySelector('[data-money-neg-add]').style.display = 'flex'
+            }
+
 
             set('assets', document.querySelector('[data-assets]').innerHTML)
 
@@ -4122,13 +4143,7 @@ document.addEventListener('click', (event) => {
 
    }
 
-   if (targ.closest('[data-asset-convert]')) {
-      targ.closest('[data-asset-convert]').insertAdjacentHTML('afterbegin', document.querySelector('[data-money-categories]').outerHTML)
-      document.querySelector('[data-money-categories]').style = 'top: 0px; right: 100%; display: flex; position: absolute;'
 
-      set('assets', document.querySelector('[data-assets]').innerHTML)
-
-   }
 
    if (targ.closest('[data-cancel]')) {
 
