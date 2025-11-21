@@ -551,7 +551,7 @@ if (get('barData2') && JSON.parse(get('barData2')).length !== 0) {
    var barData2 = [];
    document.querySelector('[data-money-neg-add]').classList.add('_block');
    document.querySelector('[data-money-neg-add]').style.display = 'none';
-   document.querySelector('[data-money-pos-add]').style = 'bottom: 60px; right: 10px; display: none;';
+   // document.querySelector('[data-money-pos-add]').style = 'bottom: 60px; right: 10px; display: none;';
 }
 
 if (get('barData3') && JSON.parse(get('barData3')).length !== 0) {
@@ -1327,7 +1327,7 @@ document.addEventListener('click', (event) => {
 
 
          }
-
+   
       })
 
    }
@@ -3724,16 +3724,16 @@ document.addEventListener('click', (event) => {
             document.querySelector('[data-money]').classList.add('_active')
             document.querySelector('[data-assets]').classList.remove('_active')
 
-            document.querySelector('[data-money-pos-add]').style.display = 'flex'
+            // document.querySelector('[data-money-pos-add]').style.display = 'flex'
 
-            if (!document.querySelector('[data-money-neg-add]').classList.contains('_block')) document.querySelector('[data-money-neg-add]').style.display = 'flex'
+            // if (!document.querySelector('[data-money-neg-add]').classList.contains('_block')) document.querySelector('[data-money-neg-add]').style.display = 'flex'
 
          } else {
             document.querySelector('[data-money]').classList.remove('_active')
             document.querySelector('[data-assets]').classList.add('_active')
 
-            document.querySelector('[data-money-pos-add]').style.display = 'none'
-            document.querySelector('[data-money-neg-add]').style.display = 'none'
+            // document.querySelector('[data-money-pos-add]').style.display = 'none'
+            // document.querySelector('[data-money-neg-add]').style.display = 'none'
 
          }
       }
