@@ -549,7 +549,7 @@ if (get('barData2') && JSON.parse(get('barData2')).length !== 0) {
 } else {
    log('barData2 не найден или пуст]');
    var barData2 = [];
-   document.querySelector('[data-money-neg-add]').classList.add('_block');
+   document.querySelector('[data-money-neg-add]').classList.add('_block');   
    document.querySelector('[data-money-neg-add]').style.display = 'none';
    // document.querySelector('[data-money-pos-add]').style = 'bottom: 60px; right: 10px; display: none;';
 }
@@ -2726,7 +2726,7 @@ document.addEventListener('click', (event) => {
    if (targ.closest('[data-mark]')) {
 
       let targShell = targ.closest('[data-mark]').closest('[data-shell]')
-      // const targMark = targ.closest('[data-mark]')
+      const targMark = targ.closest('[data-mark]')
       const targText = targShell.querySelector('[data-text]')
       const targNum = targShell.querySelector('[data-num]')
       const targMax = targShell.querySelector('[data-max]')
@@ -2746,7 +2746,6 @@ document.addEventListener('click', (event) => {
       }
 
       const targBodyAtt = targBody.getAttribute('data-task-body')
-      const targDate = targShell.querySelector('[data-date]')
       const rewardNum = Number(targShell.querySelector('[data-reward]').innerText)
 
       const hasNoteCategorie = targShell.hasAttribute('data-note-categorie')
@@ -2757,61 +2756,16 @@ document.addEventListener('click', (event) => {
       const newNum = Number(num) + 1
       const procent = newNum / Number(targMax.innerText) * 100
 
-      // const oldNum =  Number(targNum.innerText)
-
-      // if (targText.innerText === 'вода' && Number(num) !== Number(targMax.innerText)) {
-
-      //    if (document.querySelector('[data-turn="notification"]').classList.contains('_active')) {
-
-      //       set('waterEnd', Date.now() + 3600 * 1000)
-
-      //       setTimeout(() => {
-
-      //          'setTimeout start'
-
-      //          
-      //             if (${Number(document.querySelector(`[data-task-body="${targBodyAtt}"] [data-num]`).innerText)} === ${newNum}) {
-      //             `);
-      //          Number(document.querySelector(`[data-task-body="${targBodyAtt}"] [data-num]`).innerText) === newNum)
-
-      //          if (Number(document.querySelector(`[data-task-body="${targBodyAtt}"] [data-num]`).innerText) === newNum) {
-
-      //             navigator.serviceWorker.ready.then(reg => {
-      //                reg.showNotification(`вода`)
-      //             })
-
-      //             get('waterEnd') && rem('waterEnd')
-
-      //             timer active'
-
-
-      //          }
-
-      //       }, convertTimeToMilliseconds('1.00'))
-
-      //       `1.00`
-
-
-      //    } else {
-      //       'уведы выкл'
-      //    }
-
-      // }
-
-      if ((newNum <= Number(targMax.innerText)) && (!hasNoteCategorie || targ.closest('[data-lobby-top]'))) {
+      if ((newNum <= Number(targMax.innerText)) && (!hasNoteCategorie || targMark.closest('[data-lobby-top]'))) {
          targNum.innerText = newNum
-
-         // const now = new Date()
-         // const templ = `${now.getHours()}.${now.getMinutes()}`
-         // targDate.innerText = Number(templ)
 
          targShell.querySelector('[data-task-decor]').style = `width: ${procent}%; transition: width 0.3s ease 0s;`
 
       }
 
-      if ((newNum === Number(targMax.innerText)) && (!hasNoteCategorie || targ.closest('[data-lobby-top]'))) {
+      if ((newNum === Number(targMax.innerText)) && (!hasNoteCategorie || targMark.closest('[data-lobby-top]'))) {
 
-         if (targ.closest('[data-lobby-top]')) {
+         if (targMark.closest('[data-lobby-top]')) {
 
             const targOpen = document.querySelector(`[data-task-body="${targBodyAtt}"] [data-mark]._open`)
 
@@ -2819,7 +2773,7 @@ document.addEventListener('click', (event) => {
 
                const openShell = targOpen.closest('[data-shell]')
 
-               targOpen.classList.remove('_open')
+               // targOpen.classList.remove('_open')
 
                openShell.querySelector('[data-task-decor]').style = `width: ${procent}%; transition: width 0.3s ease 0s;`
                openShell.querySelector('[data-info]').style = `color: rgba(100, 75, 192, 1)`
@@ -2828,14 +2782,6 @@ document.addEventListener('click', (event) => {
 
             }
 
-            // const shellAll = document.querySelectorAll('[data-task-body]._active [data-shell]')
-            // shellAll.forEach((shell) => {
-
-            // if (shell.querySelector('[data-text]').innerText === targText.innerText) {
-            // shell.querySelector('[data-task-decor]').style = `width: ${procent}%; transition: width 0.3s ease 0s;`
-            // shell.querySelector('[data-info]').style = `color: rgba(100, 75, 192, 1)`
-
-
             const lobbyPointAll = document.querySelectorAll('[data-lobby-point]')
             lobbyPointAll.forEach((lobbyPoint) => {
 
@@ -2843,9 +2789,6 @@ document.addEventListener('click', (event) => {
                   lobbyPoint.remove()
                }
             })
-            // }
-
-            // })
 
          }
 
@@ -2963,8 +2906,8 @@ document.addEventListener('click', (event) => {
 
       }
 
-      if (hasNoteCategorie && !targ.closest('[data-lobby-top]')) {
-         targ.classList.add('_open')
+      if (hasNoteCategorie && !targMark.closest('[data-lobby-top]')) {
+         targMark.classList.add('_open')
 
          document.querySelector('[data-task-main]').style.display = 'none'
          document.querySelector('[data-lobby-add]').style.display = 'flex'
@@ -2987,154 +2930,6 @@ document.addEventListener('click', (event) => {
 
       const noteBody = document.querySelector('[data-note-body]').innerHTML
       set('noteBody', noteBody)
-
-      // function timer() {
-
-      //    if (targ.closest('[data-lobby-top]')) {
-
-      //       const shells = targBody.querySelectorAll('[data-shell]')
-      //       shells.forEach((shell) => {
-
-      //          if (shell.querySelector('[data-text]').innerText === targText.innerText) {
-      //             shell.classList.add('_temp')
-
-      //             targShell = shell
-      //          }
-
-      //       })
-
-      //    } else {
-      //       targShell.classList.add('_temp')
-      //    }
-
-
-      //    let x = false
-      //    let timeStart
-      //    let allComplete = true
-
-      //    const shellAll = targShell.closest('[data-task-body]').querySelectorAll('[data-shell]')
-      //    shellAll.forEach((shell) => {
-
-      //       const shellDecor = shell.querySelector('[data-task-decor]')
-
-      //       // shell
-      //       // if (${!x} && ${!shell.classList.contains('_temp')} && ${shell.querySelector('[data-text]').innerText} !== 'вода') {`
-
-      //       if (!x && !shell.classList.contains('_temp') && shell.querySelector('[data-text]').innerText !== 'вода') {
-
-      //          if (shellDecor.style.width !== '100%') {
-      //             allComplete = false
-      //          }
-
-      //          // !x
-
-      //       }
-
-      //       if (x) {
-
-      //          // x
-
-      //          const time = shell.querySelector('[data-date]').innerText
-
-      //          function parseTime(timeStr) {
-      //             const [hours, minutes] = timeStr.split('.').map(Number)
-      //             return hours * 60 + minutes
-      //          }
-
-      //          function formatTime(totalMinutes) {
-      //             const h = Math.floor(totalMinutes / 60)
-      //             const m = totalMinutes % 60
-      //             return `${h}.${m.toString().padStart(2, '0')}`
-      //          }
-
-      //          function timeDiff(t1, t2) {
-      //             const m1 = parseTime(t1)
-      //             const m2 = parseTime(t2)
-      //             const diff = m2 - m1
-      //             return formatTime(diff)
-      //          }
-
-      //          const difference = timeDiff(timeStart, time)
-
-      //          log
-      //             timeStart: ${timeStart} timeStart: ${time}
-      //          `)
-
-      //          log
-      //             const ${difference} = ${timeDiff(timeStart, time)}
-      //          `)
-
-      //          if (shellDecor.style.width !== '100%' && allComplete) {
-
-      //             set('taskEnd', Date.now() + convertTimeToMilliseconds(difference))
-
-
-      //             const shellAll = document.querySelectorAll('[data-shell]')
-      //             shellAll.forEach((shell) => {
-      //                shell.classList.remove('_taskEnd')
-
-      //             })
-
-      //             shell.classList.add('_taskEnd')
-
-
-      //             setTimeout(() => {
-
-      //                if (shellDecor.style.width !== '100%') {
-      //                   navigator.serviceWorker.ready.then(reg => {
-      //                      reg.showNotification(shell.querySelector('[data-text]').innerText)
-      //                   })
-
-      //                   get('taskEnd') && rem('taskEnd')
-
-      //                }
-
-
-      //             }, convertTimeToMilliseconds(difference))
-
-      //          }
-
-
-      //          if (shell && shellDecor.style.width !== '100%' && allComplete) {
-
-      //             log
-      //                               ${shell.querySelector('[data-text]').innerText}
-
-      //             ${difference}
-
-      //             `);
-      //          }
-
-
-      //          x = false
-
-      //       }
-
-      //       if (shell.classList.contains('_temp') && !shell.classList.contains('_water')) {
-      //          const time = shell.querySelector('[data-date]').innerText
-
-      //          x = true
-      //          timeStart = time
-      //       }
-
-      //    })
-
-      //    const dropdown = document.querySelector('[data-dropdown]')
-      //    dropdown && dropdown.remove()
-
-      //    const shadow = document.querySelector('[data-season-shadow]')
-      //    shadow.classList.remove('_active')
-
-      //    const activeDinamName = document.querySelector('[data-dinam-titul-name]._active')
-      //    activeDinamName && activeDinamName.classList.remove('_active')
-
-      //    targShell.classList.remove('_temp')
-
-
-      //    set('noteBody', document.querySelector('[data-note-body]').innerHTML)
-
-      // }
-      // timer()
 
    }
 
