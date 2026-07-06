@@ -4,7 +4,7 @@
 //    console.error("стек:", error?.stack);
 //    console.log('============= ERROR ============');
 
-// };
+// }; 
 
 const well = 0.047
 
