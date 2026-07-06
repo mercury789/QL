@@ -6,6 +6,8 @@
 
 // };
 
+const well = 0.047
+
 
 function set(name, value) {
    localStorage.setItem(name, value)
@@ -999,7 +1001,7 @@ document.addEventListener('click', (event) => {
             const today = new Date();
             const date = `${pad(today.getDate())}${pad(today.getMonth() + 1)}${today.getFullYear()}`;
 
-            const usdt = inputValue * 0.024
+            const usdt = inputValue * well
 
             if (inputAtt === 'pos') {
                document.querySelector('[data-money]').insertAdjacentHTML('afterbegin', `
@@ -1053,12 +1055,12 @@ document.addEventListener('click', (event) => {
                            if (asset.querySelector('[data-asset-text]').innerText === text) {
                               const newAssetNum = inputValue + Number(asset.querySelector('[data-asset-num]').innerText)
                               asset.querySelector('[data-asset-num]').innerText = newAssetNum.toFixed(2)
-                              asset.querySelector('[data-asset-usdt]').innerText = (newAssetNum * 0.024).toFixed(2)
+                              asset.querySelector('[data-asset-usdt]').innerText = (newAssetNum * well).toFixed(2)
                            }
                         })
 
                         statNum.innerText = profitClose.toFixed(2)
-                        statUsdt.innerText = (profitClose * 0.024).toFixed(2)
+                        statUsdt.innerText = (profitClose * well).toFixed(2)
                         if (profitClose >= checkDate.o) {
                            statProcent.innerText = `+${cleanProfitUP.toFixed(2)}`
                            statNum.style = 'color: rgb(255, 230, 2);'
@@ -1096,12 +1098,12 @@ document.addEventListener('click', (event) => {
                            if (asset.querySelector('[data-asset-text]').innerText === text) {
                               const newAssetNum = Number(asset.querySelector('[data-asset-num]').innerText) - inputValue
                               asset.querySelector('[data-asset-num]').innerText = newAssetNum.toFixed(2)
-                              asset.querySelector('[data-asset-usdt]').innerText = (newAssetNum * 0.024).toFixed(2)
+                              asset.querySelector('[data-asset-usdt]').innerText = (newAssetNum * well).toFixed(2)
                            }
                         })
 
                         statNum.innerText = loseClose.toFixed(2)
-                        statUsdt.innerText = (loseClose * 0.024).toFixed(2)
+                        statUsdt.innerText = (loseClose * well).toFixed(2)
                         if (loseClose <= checkDate.o) {
                            statProcent.innerText = `-${cleanLoseDOWN.toFixed(2)}`
                            statNum.style = 'color:  rgb(255, 99, 132);'
@@ -1149,7 +1151,7 @@ document.addEventListener('click', (event) => {
                      if (asset.querySelector('[data-asset-text]').innerText === text) {
                         const newAssetNum = Number(asset.querySelector('[data-asset-num]').innerText) + inputValue
                         asset.querySelector('[data-asset-num]').innerText = newAssetNum.toFixed(2)
-                        asset.querySelector('[data-asset-usdt]').innerText = (newAssetNum * 0.024).toFixed(2)
+                        asset.querySelector('[data-asset-usdt]').innerText = (newAssetNum * well).toFixed(2)
 
                      }
                   })
@@ -1163,12 +1165,12 @@ document.addEventListener('click', (event) => {
 
                      // const newAssetNum = Number(asset.querySelector('[data-asset-num]').innerText) + inputValue
                      // asset.querySelector('[data-asset-num]').innerText = newAssetNum.toFixed(2)
-                     // asset.querySelector('[data-asset-usdt]').innerText = (newAssetNum * 0.024).toFixed(2)
+                     // asset.querySelector('[data-asset-usdt]').innerText = (newAssetNum * well).toFixed(2)
 
                   })
 
                   document.querySelector('[data-statmoney-num]').innerText = sum.toFixed(2)
-                  document.querySelector('[data-statmoney-usdt]').innerText = (sum * 0.024).toFixed(2)
+                  document.querySelector('[data-statmoney-usdt]').innerText = (sum * well).toFixed(2)
 
 
 
@@ -1221,7 +1223,7 @@ document.addEventListener('click', (event) => {
                   const oldNewNum = Number(oldAssetNum.innerText) - inputValue
                   oldAssetNum.innerText = oldNewNum.toFixed(2)
 
-                  const oldNewUsdt = oldNewNum * 0.024
+                  const oldNewUsdt = oldNewNum * well
                   oldUsdt.innerText = oldNewUsdt.toFixed(2)
 
                   const assetTextAll = document.querySelectorAll('[data-asset-text]')
@@ -1233,10 +1235,10 @@ document.addEventListener('click', (event) => {
 
                         const newNum = Number(assetNum.innerText) + inputValue
                         log(newNum.toFixed(2));
-                        log((newNum * 0.024).toFixed(2));
+                        log((newNum * well).toFixed(2));
 
                         assetNum.innerText = newNum.toFixed(2)
-                        assetUsdt.innerText = (newNum * 0.024).toFixed(2)
+                        assetUsdt.innerText = (newNum * well).toFixed(2)
 
 
                      }
